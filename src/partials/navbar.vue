@@ -1,5 +1,5 @@
 <template>
-    <v-app-bar app class="transparent  fadeout">
+    <v-app-bar flat app class="transparent  fadeout">
         <router-link class="ml-5" to="/"><img src="../assets/raspberry-pi.png" alt=""></router-link>
         <v-spacer></v-spacer>
         
@@ -19,7 +19,7 @@ export default {
 
 <style scoped>
     .fadeout{
-      background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,1) 1%,rgba(255,255,255,0.50) 100%);
+      background: linear-gradient(to bottom, #ffffff 0%,#f5f5f5 1%,#ffffff80 100%);
     }
     img{
         width: 50px;

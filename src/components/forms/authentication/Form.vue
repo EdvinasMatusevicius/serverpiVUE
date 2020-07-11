@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import vueInput from './input-row.vue';
+import vueInput from './Input-row.vue';
 export default {
     name:'dynamic-form',
     props:['type'],

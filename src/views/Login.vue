@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import form from "../components/forms/form.vue";
+import form from "../components/forms/authentication/Form.vue";
 
 export default {
   name: "login-form",
