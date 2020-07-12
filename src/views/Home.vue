@@ -1,37 +1,92 @@
 <template>
 <v-container>
   <v-layout row wrap>
-    <v-flex xs12 md6 lg3 xl2>
-        <img alt="Vue logo" src="../assets/logo.png">
-    </v-flex>
-
-    <v-flex xs12 md6 lg3 xl2>
-        <img alt="Vue logo" src="../assets/logo.svg" style="width:35%">
-    </v-flex>
-    <v-flex xs12 md6 lg3 xl2>
-        <img alt="Vue logo" src="../assets/raspberry-pi.png" style="width:35%">
-    </v-flex>
-        <v-flex xs12 md6 lg3 xl2>
-        <img alt="Vue logo" src="../assets/logo.png">
-    </v-flex>
-    <v-flex xs12 md6 lg3 xl2>
-        <img alt="Vue logo" src="../assets/logo.svg" style="width:35%">
-    </v-flex>
-    <v-flex xs12 md6 lg3 xl2>
-        <img alt="Vue logo" src="../assets/raspberry-pi.png" style="width:35%">
-    </v-flex>
-
+      <project-card
+      v-for="project in projects" v-bind:key="project.id"
+      :avatar="project.avatar"
+      :username="project.username"
+      :projectImg="project.projectImg"
+      :projectName="project.projectName"
+      :projectDescription="project.projectDescription"
+      :projectLink="project.projectLink"
+      :gihub="project.gihub"
+      />
   </v-layout>
 </v-container>
 </template>
 
 <script>
 // @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
+import projectCard from '@/components/cards/Home-project-card.vue'
 
 export default {
   name: 'Home',
   components: {
+    projectCard
+  },
+
+  data(){
+    return{
+      projects:[{
+          id:1,
+          avatar: require("@/assets/profile.png"),
+          username: 'John',
+          projectImg: require("@/assets/placeholder1.png"),
+          projectName: 'Reddit',
+          projectDescription: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id culpa optio animi soluta, saepe numquam ut dolore eveniet deserunt minima consectetur, ad repellat. Repudiandae omnis, corporis rem accusantium saepe at",
+          projectLink:'www.reddit.com',
+          gihub:'https://github.com/EdvinasMatusevicius/serverpi'
+        },
+        {
+          id:2,
+          avatar: require("@/assets/profile.png"),
+          username: 'John',
+          projectImg: require("@/assets/placeholder2.png"),
+          projectName: 'Youtube',
+          projectDescription: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id culpa optio animi soluta, saepe numquam ut dolore eveniet deserunt minima consectetur, ad repellat. Repudiandae omnis, corporis rem accusantium saepe at",
+          projectLink:'www.reddit.com',
+          gihub:'https://github.com/EdvinasMatusevicius/serverpi'
+        },
+        {
+          id:3,
+          avatar: require("@/assets/profile.png"),
+          username: 'John',
+          projectImg: require("@/assets/placeholder3.png"),
+          projectName: 'World map',
+          projectDescription: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id culpa optio animi soluta, saepe numquam ut dolore eveniet deserunt minima consectetur, ad repellat. Repudiandae omnis, corporis rem accusantium saepe at",
+          projectLink:'www.reddit.com',
+          gihub:'https://github.com/EdvinasMatusevicius/serverpi'
+        },
+        {
+          id:4,
+          avatar: require("@/assets/profile.png"),
+          username: 'John ed',
+          projectImg: require("@/assets/placeholder4.png"),
+          projectName: 'Basic Chat',
+          projectDescription: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id culpa optio animi soluta, saepe numquam ut dolore eveniet deserunt minima consectetur, ad repellat. Repudiandae omnis, corporis rem accusantium saepe at",
+          projectLink:'www.reddit.com',
+          gihub:'https://github.com/EdvinasMatusevicius/serverpi'
+        },
+        {
+          id:5,
+          avatar: require("@/assets/profile.png"),
+          username: 'John ed',
+          projectImg: require("@/assets/placeholder5.png"),
+          projectName: 'Darbo baze',
+          projectDescription: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id culpa optio animi soluta, saepe numquam ut dolore eveniet deserunt minima consectetur, ad repellat. Repudiandae omnis, corporis rem accusantium saepe at",
+          projectLink:'www.reddit.com',
+          gihub:'https://github.com/EdvinasMatusevicius/serverpi'
+        }
+      ]
+    }
   }
 }
 </script>
+<style lang="scss">
+  .card{
+    &__user-grid{
+      display: grid;
+      grid-template-columns: auto auto;
+    }
+  }
+</style>

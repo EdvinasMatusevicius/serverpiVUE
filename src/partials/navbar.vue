@@ -19,7 +19,7 @@ export default {
 
 <style scoped>
     .fadeout{
-      background: linear-gradient(to bottom, #ffffff 0%,#f5f5f5 1%,#ffffff80 100%);
+      background: linear-gradient(to bottom, #ffffff 0%,#f5f5f5 0%,#ffffffbb 100%);
     }
     img{
         width: 50px;
