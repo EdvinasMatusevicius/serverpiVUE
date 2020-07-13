@@ -40,6 +40,11 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss">
+  .card{
+    &__user-grid{
+      display: grid;
+      grid-template-columns: auto auto;
+    }
+  }
 </style>

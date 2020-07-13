@@ -30,7 +30,7 @@ export default {
       projects:[{
           id:1,
           avatar: require("@/assets/profile.png"),
-          username: 'John',
+          username: 'John ',
           projectImg: require("@/assets/placeholder1.png"),
           projectName: 'Reddit',
           projectDescription: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id culpa optio animi soluta, saepe numquam ut dolore eveniet deserunt minima consectetur, ad repellat. Repudiandae omnis, corporis rem accusantium saepe at",
@@ -83,10 +83,5 @@ export default {
 }
 </script>
 <style lang="scss">
-  .card{
-    &__user-grid{
-      display: grid;
-      grid-template-columns: auto auto;
-    }
-  }
+
 </style>
