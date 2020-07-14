@@ -1,5 +1,5 @@
 <template>
-    <v-flex xs12 md6 lg4 xl2 >
+    <v-flex xs12 md6 lg4 xl3 >
 
   <v-card class="card ma-5" color="#f5f7fa">
         <v-card-title class="font-weight-normal body-2">
@@ -20,12 +20,12 @@
         </v-card-subtitle>
         <v-card-actions class="pt-0">
                 <v-spacer></v-spacer>
-                <v-btn fab depressed :href="projectLink">
-                  <v-icon x-large color="blue">mdi-arrow-up-circle-outline</v-icon>
+                <v-btn class="text-decoration-none" target="_blank" fab depressed :href="projectLink">
+                  <v-icon x-large color="#4592af">mdi-arrow-up-circle-outline</v-icon>
                 </v-btn>
                 <v-spacer></v-spacer>
-                <v-btn fab depressed :href="gihub">
-                  <v-icon x-large color="green">mdi-github</v-icon>
+                <v-btn class="text-decoration-none" target="_blank" fab depressed :href="gihub">
+                  <v-icon x-large color="#34b378">mdi-github</v-icon>
                 </v-btn>
                 <v-spacer></v-spacer>
         </v-card-actions>

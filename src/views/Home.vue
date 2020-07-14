@@ -34,7 +34,7 @@ export default {
           projectImg: require("@/assets/placeholder1.png"),
           projectName: 'Reddit',
           projectDescription: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id culpa optio animi soluta, saepe numquam ut dolore eveniet deserunt minima consectetur, ad repellat. Repudiandae omnis, corporis rem accusantium saepe at",
-          projectLink:'www.reddit.com',
+          projectLink:'https://www.reddit.com',
           gihub:'https://github.com/EdvinasMatusevicius/serverpi'
         },
         {
@@ -44,7 +44,7 @@ export default {
           projectImg: require("@/assets/placeholder2.png"),
           projectName: 'Youtube',
           projectDescription: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id culpa optio animi soluta, saepe numquam ut dolore eveniet deserunt minima consectetur, ad repellat. Repudiandae omnis, corporis rem accusantium saepe at",
-          projectLink:'www.reddit.com',
+          projectLink:'https://www.reddit.com',
           gihub:'https://github.com/EdvinasMatusevicius/serverpi'
         },
         {
@@ -54,7 +54,7 @@ export default {
           projectImg: require("@/assets/placeholder3.png"),
           projectName: 'World map',
           projectDescription: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id culpa optio animi soluta, saepe numquam ut dolore eveniet deserunt minima consectetur, ad repellat. Repudiandae omnis, corporis rem accusantium saepe at",
-          projectLink:'www.reddit.com',
+          projectLink:'https://www.reddit.com',
           gihub:'https://github.com/EdvinasMatusevicius/serverpi'
         },
         {
@@ -64,7 +64,7 @@ export default {
           projectImg: require("@/assets/placeholder4.png"),
           projectName: 'Basic Chat',
           projectDescription: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id culpa optio animi soluta, saepe numquam ut dolore eveniet deserunt minima consectetur, ad repellat. Repudiandae omnis, corporis rem accusantium saepe at",
-          projectLink:'www.reddit.com',
+          projectLink:'https://www.reddit.com',
           gihub:'https://github.com/EdvinasMatusevicius/serverpi'
         },
         {
@@ -74,7 +74,7 @@ export default {
           projectImg: require("@/assets/placeholder5.png"),
           projectName: 'Darbo baze',
           projectDescription: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id culpa optio animi soluta, saepe numquam ut dolore eveniet deserunt minima consectetur, ad repellat. Repudiandae omnis, corporis rem accusantium saepe at",
-          projectLink:'www.reddit.com',
+          projectLink:'https://www.reddit.com',
           gihub:'https://github.com/EdvinasMatusevicius/serverpi'
         }
       ]
