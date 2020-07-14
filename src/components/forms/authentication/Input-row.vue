@@ -1,9 +1,13 @@
 <template>
-    <div class="form-group">
-        <label for="formGroupExampleInput">{{this.inputInfo.name}}</label>
-        <input :type="this.inputInfo.type" class="form-control" v-bind:class="{ 'is-invalid': this.errorMessage }" id="formGroupExampleInput"  v-on:input="validateInput($event.target.value)">
-        <div class="invalid-feedback" v-text="errorMessage"></div>
-    </div>
+
+    <v-text-field
+        v-model="inputInfo.model"
+        :rules="rules"
+        :type="inputInfo.type"
+        :label="inputInfo.label"
+        :name="inputInfo.name"
+    >
+    </v-text-field>
 </template>
 
 <script>
@@ -12,39 +16,42 @@ export default {
     props:['inputInfo'],
     data(){
         return {
-            errorMessage: '',
+            rules:this.getRules()
         }
     },
     methods:{
-        validateInput(val){
-            this.errorMessage = '';
-            this.inputInfo.validations.forEach(validation => {
+        getRules(){
+             let rulesArr = [];
+             this.inputInfo.validations.forEach(validation => {
                 switch (validation.validation) {
-                    case 'length':
-                        this.length(val,validation.min,validation.max,this.inputInfo.name);
+                        case 'required':
+                            rulesArr.push(this.required(this.inputInfo.name))
+                        break;
+                        case 'length':
+                            rulesArr.push(this.length(validation.min,validation.max,this.inputInfo.name));
                         break;
                         case 'email':
-                            this.email(val);
+                            rulesArr.push(this.email())
                         break;
                 
                     default:
                         break;
                 }
             });
+            return rulesArr;
 
         },
-        email(val){
-            const etaIndex = val.search(/\@/g);
-                if (etaIndex === -1 || etaIndex === 0 || etaIndex === val.length - 1) {
-                    this.errorMessage= 'email is invalid';
-                }
+        required(name){
+            return v=> !!v || `${name} field is required`;
         },
-        length(val,min,max,name){
-            if (val.length < min || val.length > max) {
-                this.errorMessage= `${name} can't be shorter than ${min} and longer than ${max} characters`;
+        email(){
+            return v => /.+@.+\..+/.test(v) || 'E-mail must be valid';
+        },
+        length(min,max,name){
+            return v =>  (v.length > min && v.length < max)  || `${name} can't be shorter than ${min} and longer than ${max} characters`;
             }
 
-        }
     }
+    
 }
 </script>

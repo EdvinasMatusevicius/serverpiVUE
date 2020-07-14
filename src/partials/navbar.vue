@@ -4,7 +4,7 @@
     <!-- if new svg add preserveAspectRatio="none"  inside svg tag -->
     
     <v-app-bar flat app class="transparent  " height="110">
-        <router-link class="ml-2" to="/"><img class="logo" src="../assets/pi_logo.svg" alt=""></router-link>
+        <router-link  to="/"><img class="logo" src="../assets/pi_logo.svg" alt=""></router-link>
         <v-spacer></v-spacer>
         
         <v-btn text color="white" h5 class="text-decoration-none text-h6 font-weight-regular" to="/about">About</v-btn>
@@ -28,15 +28,16 @@ export default {
             position: fixed;
 	        top:0;
 	        right:0;
-            padding-left: 10rem;
+            // padding-left: 10rem; //atkomentuoti jei naudojamas nav background bet axtension poicona
             min-width: 100%;
             height: 110px;
-            width: 20px;
+            width: 100%;
             z-index: 1;
         }
     }
     .logo{
         min-height: 100%;
         width: 11rem;
+        padding-bottom: 10px;
     }
 </style>

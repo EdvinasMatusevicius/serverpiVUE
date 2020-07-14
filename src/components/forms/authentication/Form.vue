@@ -1,14 +1,14 @@
 <template>
     <div>
-        <form >
+        <v-form ref="form">
             <vue-input       
             v-for="(input,i) in inputs"
             :key="i"
             :inputInfo="input"
             >
           </vue-input>
-          <button type="submit" class="btn btn-primary" v-text="type"></button>
-        </form>
+          <v-btn @click="validate" class="btn btn-primary" v-text="type"></v-btn>
+        </v-form>
     </div>
 </template>
 
@@ -26,9 +26,14 @@ export default {
                 return {
                     inputs:{
                         username:{
+                            model:'',
                             type:'text',
-                            name:'User name',
-                            validations:[{
+                            label:'User name',
+                            name:'name',
+                            validations:[
+                            {
+                                validation:'required'
+                            },{
                                 validation:'length',
                                 min:2,
                                 max:20
@@ -36,29 +41,43 @@ export default {
                             }
                         ,
                         email:{
+                            model:'',
                             type:'email',
-                            name:'E-mail',
-                            validations:[{
-                                validation:'email'
-                            },
+                            label:'E-mail',
+                            name:'e-mail',
+                            validations:[
                             {
+                                validation:'required'
+                            },{
+                                validation:'email'
+                            },{
                                 validation:'length',
                                 min:3,
                                 max:255
                             }
                             ],},
                         password:{
+                            model:'',
                             type:'password',
-                            name:'Password',
-                            validations:[{
+                            label:'Password',
+                            name:'password',
+                            validations:[
+                                {
+                                validation:'required'
+                                },{
                                 validation:'length',
                                 min:8,
                                 max:255
                             }],},
                         repeatpassword:{
+                            model:'',
                             type:'password',
-                            name:'Repeat password',
-                            validations:[{
+                            label:'Repeat password',
+                            name:'password_confirmation',
+                            validations:[
+                                {
+                                validation:'required'
+                                },{
                                 validation:'length',
                                 min:8,
                                 max:255
@@ -71,13 +90,23 @@ export default {
                     inputs:{
                         email:{
                             type:'email',
-                            name:'E-mail',
-                            validations:[]
+                            label:'E-mail',
+                            name:'email',
+                            validations:[
+                                {
+                                validation:'required'
+                                },
+                            ]
                             },
                         password:{
                             type:'password',
-                            name:'Password',
-                            validations:[]
+                            label:'Password',
+                            name:'password',
+                            validations:[
+                                {
+                                    validation:'required'
+                                },
+                            ]
                             }
                     }
                 }
@@ -88,6 +117,11 @@ export default {
                 }
                 break;
         }
+    },
+    methods:{
+        validate () {
+            this.$refs.form.validate()
+      },
     }
 }
 </script>
