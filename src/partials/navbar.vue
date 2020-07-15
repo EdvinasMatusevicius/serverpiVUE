@@ -7,6 +7,7 @@
         <router-link  to="/"><img class="logo" src="../assets/pi_logo.svg" alt=""></router-link>
         <v-spacer></v-spacer>
         
+        <v-btn text color="white" h5 class="text-decoration-none text-h6 font-weight-regular" to="/shell">Shell</v-btn>
         <v-btn text color="white" h5 class="text-decoration-none text-h6 font-weight-regular" to="/about">About</v-btn>
         <v-btn text color="white" class="text-decoration-none text-h6 font-weight-regular" to="/login">Login</v-btn>
         <v-btn text color="white" class="text-decoration-none mr-5 text-h6 font-weight-regular" to="/register">Register</v-btn>

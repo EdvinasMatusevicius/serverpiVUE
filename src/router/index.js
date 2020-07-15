@@ -28,6 +28,11 @@ Vue.use(VueRouter)
     name: 'Register',
     component: () => import('../views/Register.vue')
   },
+  {
+    path: '/shell',
+    name: 'Shell',
+    component: () => import('../views/Shell.vue')
+  },
 ]
 
 const router = new VueRouter({
