@@ -1,7 +1,7 @@
 <template>
 
     <v-text-field
-        v-model="inputInfo.model"
+        v-model="inputVal"
         :rules="rules"
         :type="inputInfo.type"
         :label="inputInfo.label"
@@ -16,7 +16,13 @@ export default {
     props:['inputInfo'],
     data(){
         return {
-            rules:this.getRules()
+            rules:this.getRules(),
+            inputVal:this.inputInfo.inputVal
+        }
+    },
+    watch:{
+        inputVal: function(newVal){
+            this.$emit('newInputVal',newVal);
         }
     },
     methods:{
@@ -40,7 +46,7 @@ export default {
             });
             return rulesArr;
 
-        },
+        },//TO DO password confirmation validation
         required(name){
             return v=> !!v || `${name} field is required`;
         },

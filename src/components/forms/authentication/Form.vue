@@ -5,6 +5,7 @@
             v-for="(input,i) in inputs"
             :key="i"
             :inputInfo="input"
+            @newInputVal="(val)=>input.inputVal = val"
             >
           </vue-input>
           <v-btn @click="validate" class="btn btn-primary" v-text="type"></v-btn>
@@ -26,7 +27,7 @@ export default {
                 return {
                     inputs:{
                         username:{
-                            model:'',
+                            inputVal:'',
                             type:'text',
                             label:'User name',
                             name:'name',
@@ -41,7 +42,7 @@ export default {
                             }
                         ,
                         email:{
-                            model:'',
+                            inputVal:'',
                             type:'email',
                             label:'E-mail',
                             name:'e-mail',
@@ -57,7 +58,7 @@ export default {
                             }
                             ],},
                         password:{
-                            model:'',
+                            inputVal:'',
                             type:'password',
                             label:'Password',
                             name:'password',
@@ -70,7 +71,7 @@ export default {
                                 max:255
                             }],},
                         repeatpassword:{
-                            model:'',
+                            inputVal:'',
                             type:'password',
                             label:'Repeat password',
                             name:'password_confirmation',
@@ -89,6 +90,7 @@ export default {
                     return {
                     inputs:{
                         email:{
+                            inputVal:'',
                             type:'email',
                             label:'E-mail',
                             name:'email',
@@ -99,6 +101,7 @@ export default {
                             ]
                             },
                         password:{
+                            inputVal:'',
                             type:'password',
                             label:'Password',
                             name:'password',
@@ -120,7 +123,18 @@ export default {
     },
     methods:{
         validate () {
-            this.$refs.form.validate()
+            if(this.$refs.form.validate()){
+                switch (this.type) {
+                    case 'log-in':
+                        console.log(this.inputs.email.inputVal,this.inputs.password.inputVal)
+                        break;
+                    case 'register':
+                        console.log(this.inputs.username.inputVal,this.inputs.email.inputVal,this.inputs.password.inputVal);
+                        break;
+                    default:
+                        break;
+                }      
+            }
       },
     }
 }
