@@ -11,9 +11,11 @@
             :model="$data[component.model]"
             @newEnvEditState2="(val)=>$data[component.model] = val"
         ></text-area>
-
         <!-- form -->
-        <div v-if="component.type === 'form'">
+        <controlls-form
+        
+        ></controlls-form>
+        <!-- <div v-if="component.type === 'form'">
             <v-form :ref="component.ref">
                 <div v-for="formComponent in component.formComponents" :key="formComponent.id">
                     <info-area
@@ -27,23 +29,24 @@
                         :rules="rules"
                     ></text-field>
                 </div>
-                    <!-- <div v-if="formComponent.type === 'button'" class="controlls__btn d-inline-flex justify-center">
+                     <div v-if="formComponent.type === 'button'" class="controlls__btn d-inline-flex justify-center">
                         <div class="align-self-center">{{formComponent.name}}</div>
                         <v-spacer></v-spacer>
                         <v-btn @click="dynamicMethodsHandler(formComponent.method,formComponent.params ? formComponent.params : null)" outlined fab :color="formComponent.color" class="align-self-center">
                             <v-icon>{{component.icon}}</v-icon>
                         </v-btn>
-                    </div> -->
+                    </div>
             </v-form>
-        </div>
+        </div> -->
     </div>
 </template>
 
 <script>
-import textArea from '@/components/shell/controlls-components/Shell-controlls-textarea.vue'
-import infoArea from '@/components/shell/controlls-components/Shell-controlls-infoarea.vue'
-import textField from '@/components/shell/controlls-components/Shell-controlls-textfield.vue'
-import controllsButton from '@/components/shell/controlls-components/Shell-controlls-button.vue'
+import textArea from '@/components/shell/controlls-components/Shell-controlls-textarea.vue';
+import infoArea from '@/components/shell/controlls-components/Shell-controlls-infoarea.vue';
+import textField from '@/components/shell/controlls-components/Shell-controlls-textfield.vue';
+import controllsButton from '@/components/shell/controlls-components/Shell-controlls-button.vue';
+import controllsForm from '@/components/shell/controlls-components/Shell-controlls-form.vue';
 export default {
     name:'shell-controll-components',
     props:['component', 'dynamicMethodsHandler','model','variables'],
@@ -52,6 +55,7 @@ export default {
         infoArea,
         textField,
         controllsButton,
+        controllsForm
     },
     data(){
         return{

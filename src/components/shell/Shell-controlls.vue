@@ -40,9 +40,10 @@ export default {
                     DB_PORT=3306
                     DB_DATABASE=serverpi
                     DB_USERNAME=root
-                    DB_PASSWORD=`,
-                hasDbUser:false,
-                appHasDb:false,
+                    DB_PASSWORD=`,//run showDbVariables method
+                hasDbUser:hasDatabaseUser(), //write has db user method
+                appHasDb:appHasDatabase(),//same here
+                registerDbUserPassword:'',
             },
            }
     },
@@ -80,6 +81,12 @@ export default {
                 DB_DATABASE=${projectName}
                 DB_USERNAME=${username}
                 DB_PASSWORD=(your mysql user password)`;
+           },
+           hasDatabaseUser(){
+               return falsel
+           },
+           appHasDatabase(){
+               return false;
            }
        },
 }
