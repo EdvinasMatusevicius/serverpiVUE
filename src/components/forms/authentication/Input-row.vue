@@ -46,7 +46,7 @@ export default {
             });
             return rulesArr;
 
-        },//TO DO password confirmation validation
+        },
         required(name){
             return v=> !!v || `${name} field is required`;
         },

@@ -2,10 +2,10 @@
     <div>
         <v-form ref="form">
             <vue-input       
-            v-for="(input,i) in inputs"
-            :key="i"
-            :inputInfo="input"
-            @newInputVal="(val)=>input.inputVal = val"
+                v-for="(input,i) in inputs"
+                :key="i"
+                :inputInfo="input"
+                @newInputVal="(val)=>input.inputVal = val"
             >
           </vue-input>
           <v-btn @click="validate" class="btn btn-primary" v-text="type"></v-btn>
