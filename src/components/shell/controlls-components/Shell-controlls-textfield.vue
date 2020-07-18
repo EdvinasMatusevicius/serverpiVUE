@@ -1,32 +1,66 @@
 <template>
-     <v-text-field v-if="formComponent.type === 'input' && !variables[formComponent.hideIf]"
+     <v-text-field 
         v-model="model"
-        :rules="rules"
         :type="formComponent.inputType"
         :label="formComponent.label"
+        :rules="rules"
     >
+        <!-- :rules="rules" -->
     </v-text-field>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters,mapMutations } from 'vuex'
 
 export default {
     name:"shell-component-textfield",
-    props:['formComponent','rules'],
-    data(){
-        return{
-            model:this.models[formComponent.model]
-
-        }
-    },
+    props:['formComponent','variables'],
+    // ,'rules'
     computed:{
         ...mapGetters({
             models:'shell/getModels'
         }),
-        ...mapActions({
-            
-        })
+    },
+    data(){
+        return{
+            model:'',
+            rules:this.getRules()
+        }
+    },
+    mounted(){
+        this.model=this.models[this.formComponent.model]
+    },
+    watch:{
+        model: function(newVal){
+            const modelInfo = {
+                model:this.formComponent.model,
+                value:newVal
+            };
+            this.mutateModel(modelInfo);
+        }
+    },
+
+    methods:{
+        ...mapMutations({
+            mutateModel:'shell/mutateModel'
+        }),
+        getRules(){
+            let rulesArr = [];
+            this.formComponent.validations.forEach(validation => {
+                switch (validation) {
+                        case 'required':
+                            rulesArr.push(this.required())
+                        break;
+                    default:
+                        break;
+                }
+            });
+            return rulesArr;
+
+        },
+        required(){
+            return v=> !!v || `Field is required`;
+        },
     }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
-          <v-expansion-panels class="controlls">
-           <v-expansion-panel  v-for="group of controlls" v-bind:key="group.id" class="controlls__panel">
+          <v-expansion-panels class="controlls" focusable v-scroll.self>
+           <v-expansion-panel  v-for="group of controlls" v-bind:key="group.id" class="controlls__panel" >
              <v-expansion-panel-header>{{group.groupName}} </v-expansion-panel-header>
              <v-expansion-panel-content>
 
@@ -41,8 +41,9 @@ export default {
                     DB_DATABASE=serverpi
                     DB_USERNAME=root
                     DB_PASSWORD=`,//run showDbVariables method
-                hasDbUser:hasDatabaseUser(), //write has db user method
-                appHasDb:appHasDatabase(),//same here
+                nginxRouteInfo:`If index file in root write /  if in folder public write /public and so on`,
+                needDbAndUser:this.needDatabaseUser(), //write has db user method
+                needDb:this.needDatabase(),//same here
                 registerDbUserPassword:'',
             },
            }
@@ -82,17 +83,24 @@ export default {
                 DB_USERNAME=${username}
                 DB_PASSWORD=(your mysql user password)`;
            },
-           hasDatabaseUser(){
-               return falsel
+           needDatabaseUser(){
+               return true
            },
-           appHasDatabase(){
-               return false;
+           needDatabase(){
+               if(this.needDatabaseUser()){
+                   return false
+               }
+               return true
+           },
+           validate(ref,nextMethod,paramsToNextMethod){
+               console.log(...paramsToNextMethod)
            }
        },
 }
 </script>
 
 <style lang="scss">
+
  .controlls{
         min-width: 15rem;
         height:auto;
@@ -102,6 +110,9 @@ export default {
         &__btn{
             width: 100%;
             border:1px solid beige;
+        }
+        &__form{
+            //for forms inside shell controlls
         }
     }
 </style>

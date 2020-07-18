@@ -1,6 +1,10 @@
 const state= ()=> ({
     models:{
         registerDbUserPassword:'',
+        nginxRoute:'',
+        customQueryUserPassword:'',
+        customQuery:'',
+        customArtisan:'',
     },
     controlls:[
         {
@@ -97,38 +101,163 @@ const state= ()=> ({
                     formComponents:[
                         {
                             id:1,
+                            type:'input',
+                            label:'New mysql user password',
+                            inputType:'password',
+                            model:'registerDbUserPassword',
+                            validations:['required'],
+                            showIf:'needDbAndUser'
+                        },
+                        {
+                            id:2,
+                            type:'button',
+                            name:'Create project database and user',
+                            icon:'mdi-file-upload',
+                            method:'validate',
+                            params:['db-create','registerDb'],
+                            color:'#3f3f3fb6',
+                            showIf:'needDbAndUser'
+                        },
+                        {
+                            id:3,
+                            type:'button',
+                            name:'Create project database',
+                            icon:'mdi-file-upload',
+                            method:'createDb',
+                            params:[],
+                            color:'#3f3f3fb6',
+                            showIf:'needDb'
+                        },
+                        {
+                            id:4,
                             type:'info-area',
                             info:'dbinfo'
+                        }
+    
+                    ]
+                },
+                {
+                    id:2,
+                    type:'button',
+                    name:'Migrate database (database must be created and database credentials saved to env file)',
+                    icon:'mdi-file-upload',
+                    method:'migrateDb',
+                    params:[],
+                    color:'#3f3f3fb6'
+                }
+            ]
+        },
+        {
+            id:4,
+            groupName:'Application configuration/initiation and custom commands',
+            components:[
+                {
+                    id:1,
+                    type:'button',
+                    name:'Git pull',
+                    icon:'mdi-file-plus',
+                    method:'gitPull',
+                    color:'#3f3f3fb6',
+                },
+                {
+                    id:2,
+                    type:'form',
+                    ref:'nginx',
+                    formComponents:[
+                        {
+                            id:1,
+                            type:'input',
+                            label:'Main index file location',
+                            inputType:'text',
+                            model:'nginxRoute',
+                            validations:['required'],
+                            showIf:'needDbAndUser'
+                        },
+                        {
+                            id:2,
+                            type:'info-area',
+                            info:'nginxRouteInfo'
+                        },
+                        {
+                            id:3,
+                            type:'button',
+                            name:'Set index route and initiate application',
+                            icon:'mdi-file-upload',
+                            method:'validate',
+                            params:['nginx','initiateNginx',['nginxRoute']],
+                            color:'#3f3f3fb6',
+                            showIf:'needDbAndUser'
+                        }
+    
+                    ]
+                },
+                {
+                    id:3,
+                    type:'form',
+                    ref:'custom-query',
+                    formComponents:[
+                        {
+                            id:1,
+                            type:'input',
+                            label:'Mysql user password',
+                            inputType:'password',
+                            model:'customQueryUserPassword',
+                            validations:['required'],
                         },
                         {
                             id:2,
                             type:'input',
-                            label:'New mysql user will be created with password you enter here',
-                            inputType:'password',
-                            model:'registerDbUserPassword',
-                            hideIf:'hasDbUser'
+                            label:'Mysql query to run on application\'s database',
+                            inputType:'text',
+                            model:'customQuery',
+                            validations:['required']
                         },
-                        // {
-                        //     id:3,
-                        //     type:'button',
-                        //     name:'Create project database',
-                        //     icon:'mdi-file-upload',
-                        //     method:'',
-                        //     params:['areaData'],
-                        //     color:'#3f3f3fb6',
-                        //     hideIf:'appHasDb'
-                        // }
+                        {
+                            id:3,
+                            type:'button',
+                            name:'Run custom query',
+                            icon:'mdi-file-upload',
+                            method:'validate',
+                            params:['custom-query','runCustomQuery',['customQueryUserPassword','customQuery']],
+                            color:'#3f3f3fb6',
+                            showIf:'needDbAndUser'
+                        }
     
                     ]
-                }
+                },
+                {
+                    id:4,
+                    type:'form',
+                    ref:'custom-artisan',
+                    formComponents:[
+                        {
+                            id:1,
+                            type:'input',
+                            label:'Custom artisan command',
+                            inputType:'text',
+                            model:'customArtisan',
+                            validations:['required']
+                        },
+                        {
+                            id:2,
+                            type:'button',
+                            name:'Run custom artisan command (write command without php artisan prefix)',
+                            icon:'mdi-file-upload',
+                            method:'validate',
+                            params:['custom-artisan','runCustomArtisan',['customArtisan']],
+                            color:'#3f3f3fb6'
+                        }
+    
+                    ]
+                },
             ]
         },
     ]
 
 })
 const mutations = {
-    mutateModel (state,modelInfo){
-        state.models[modelInfo.model] = modelInfo.value
+    mutateModel ({models},modelInfo){
+        models[modelInfo.model] = modelInfo.value
     }
 }
 const actions = {

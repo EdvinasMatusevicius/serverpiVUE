@@ -13,7 +13,9 @@
         ></text-area>
         <!-- form -->
         <controlls-form
-        
+            :component="component"
+            :variables="variables"
+            :dynamicMethodsHandler="dynamicMethodsHandler"
         ></controlls-form>
         <!-- <div v-if="component.type === 'form'">
             <v-form :ref="component.ref">
@@ -60,7 +62,6 @@ export default {
     data(){
         return{
             areaData:this.model?this.model:'',
-            // rules:this.getRules(),
         }
     },
     watch:{
@@ -71,25 +72,7 @@ export default {
             this.areaData= this.model
         }
     },
-    methods:{
-        // getRules(){
-        //     let rulesArr = [];
-        //     this.inputInfo.validations.forEach(validation => {
-        //         switch (validation.validation) {
-        //                 case 'required':
-        //                     rulesArr.push(this.required())
-        //                 break;
-        //             default:
-        //                 break;
-        //         }
-        //     });
-        //     return rulesArr;
-
-        // },
-        required(){
-            return v=> !!v || `Field is required`;
-        },
-    }
+    
 }
 </script>
 
