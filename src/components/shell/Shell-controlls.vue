@@ -1,5 +1,5 @@
 <template>
-          <v-expansion-panels class="controlls" focusable v-scroll.self>
+          <v-expansion-panels class="controlls" focusable>
            <v-expansion-panel  v-for="group of controlls" v-bind:key="group.id" class="controlls__panel" >
              <v-expansion-panel-header>{{group.groupName}} </v-expansion-panel-header>
              <v-expansion-panel-content>
@@ -7,11 +7,13 @@
                  <div v-for="component of group.components" :key="component.id" >
                      
                     <shell-component
+                        :ref="component.ref? component.ref : null"
                         :component="component"
                         :dynamicMethodsHandler="dynamicMethodsHandler"
                         :variables="variables"
                         :model="component.model?$data[component.model] : false"
                          @newEnvEditState="(val)=>$data[component.model] = val"
+                         @validationPassTrain="(val)=>dynamicMethodsHandler(...val)"
                         >
                     </shell-component>
 
@@ -50,7 +52,8 @@ export default {
     },
     computed:{
         ...mapGetters({
-            controlls:"shell/getControlls"
+            controlls:"shell/getControlls",
+            models:"shell/getModels"
         })
     },
     methods:{
@@ -58,7 +61,44 @@ export default {
            dynamicMethodsHandler(method,params){
                this[method](...params);
            },
+
+            //methods to get values for variables object
+            showDbVariables(){
+               const projectName = 'serverpi';
+               const username = 'dude';
+               return `DB_CONNECTION=mysql
+                DB_HOST=127.0.0.1
+                DB_PORT=3306
+                DB_DATABASE=${projectName}
+                DB_USERNAME=${username}
+                DB_PASSWORD=(your mysql user password)`;
+            },
+             needDatabaseUser(){
+                return true
+            },
+            needDatabase(){
+                if(this.needDatabaseUser()){
+                    return false
+                }
+                return true
+            },
+        //    --------------------------------------------------------------
            composerInstall(){
+
+           },
+           npmInstall(){
+
+           },
+           copyEnvExampe(){
+
+           },
+           createEnvFile(){
+
+           },
+           generateAppKey(){
+
+           },
+           linkStorage(){
 
            },
            fillEnvTextArea(model){
@@ -73,28 +113,29 @@ export default {
                // save to back
                this[model]="";
            },
-           showDbVariables(){
-               const projectName = 'serverpi';
-               const username = 'dude';
-               return `DB_CONNECTION=mysql
-                DB_HOST=127.0.0.1
-                DB_PORT=3306
-                DB_DATABASE=${projectName}
-                DB_USERNAME=${username}
-                DB_PASSWORD=(your mysql user password)`;
-           },
-           needDatabaseUser(){
-               return true
-           },
-           needDatabase(){
-               if(this.needDatabaseUser()){
-                   return false
+           registerDb(password){
+               if(password === undefined){
+                   console.log('db create with existing user')
                }
-               return true
+               if(password){
+                   console.log('atejo iki register db  ' + this.models[password])
+               }
            },
-           validate(ref,nextMethod,paramsToNextMethod){
-               console.log(...paramsToNextMethod)
-           }
+           migrateDb(){
+
+           },
+           gitPull(){
+
+           },
+           initiateNginx(route){
+               console.log(route);
+           },
+           runCustomQuery(password,query){
+
+           },
+           runCustomArtisan(artisanCommand){
+
+           },
        },
 }
 </script>

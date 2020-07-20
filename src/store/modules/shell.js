@@ -7,6 +7,7 @@ const state= ()=> ({
         customArtisan:'',
     },
     controlls:[
+        //forComponent's button params composition [name of form ref , after validation name of next method to run, array of arguments to pass to next method]
         {
             id:1,
             groupName:'Package installation',
@@ -17,6 +18,7 @@ const state= ()=> ({
                     name:'composer install',
                     icon:'mdi-package-down',
                     color:'#4592af',
+                    method:'composerInstall',
                 },
                 {
                     id:2,
@@ -24,6 +26,7 @@ const state= ()=> ({
                     name:'npm install',
                     icon:'mdi-package-down',
                     color:'#34b378',
+                    method:'npmInstall',
                 }
             ]
         },
@@ -34,43 +37,43 @@ const state= ()=> ({
                 {
                     id:1,
                     type:'button',
-                    name:'Create and copy env values from env.example',
+                    name:'Create env file and copy values from env.example',
                     icon:'mdi-file-plus',
-                    method:'composerInstall',
                     color:'#3f3f3fb6',
+                    method:'copyEnvExampe',
                 },
                 {
                     id:2,
                     type:'button',
                     name:'Create empty env file',
                     icon:'mdi-file-plus-outline',
-                    method:'',
                     color:'#3f3f3fb6',
+                    method:'createEnvFile',
                 },
                 {
                     id:3,
                     type:'button',
                     name:'Generate app key',
                     icon:'mdi-key-plus',
-                    method:'',
                     color:'#4592af',
+                    method:'generateAppKey',
                 },
                 {
                     id:4,
                     type:'button',
                     name:'Link storage (filesystem driver must be set if not default)',
                     icon:'mdi-link-variant-plus',
-                    method:'',
                     color:'#4592af',
+                    method:'linkStorage',
                 },
                 {
                     id:5,
                     type:'button',
                     name:'Edit env file values',
                     icon:'mdi-file-download-outline',
-                    method:'fillEnvTextArea',
                     params:['areaData'],
                     color:'#3f3f3fb6',
+                    method:'fillEnvTextArea',
                 },
                 {
                     id:6,
@@ -84,9 +87,9 @@ const state= ()=> ({
                     type:'button',
                     name:'Save env vals (below text area)',
                     icon:'mdi-file-upload',
-                    method:'saveEditedEnvData',
                     params:['areaData'],
                     color:'#3f3f3fb6',
+                    method:'saveEditedEnvData',
                 }
             ]
         },
@@ -97,7 +100,7 @@ const state= ()=> ({
                 {
                     id:1,
                     type:'form',
-                    ref:'db-create',
+                    ref:"dbcreate",
                     formComponents:[
                         {
                             id:1,
@@ -112,9 +115,9 @@ const state= ()=> ({
                             id:2,
                             type:'button',
                             name:'Create project database and user',
-                            icon:'mdi-file-upload',
+                            icon:'mdi-database-plus',
                             method:'validate',
-                            params:['db-create','registerDb'],
+                            params:['dbcreate','registerDb',['registerDbUserPassword']],
                             color:'#3f3f3fb6',
                             showIf:'needDbAndUser'
                         },
@@ -122,7 +125,7 @@ const state= ()=> ({
                             id:3,
                             type:'button',
                             name:'Create project database',
-                            icon:'mdi-file-upload',
+                            icon:'mdi-database-plus',
                             method:'createDb',
                             params:[],
                             color:'#3f3f3fb6',
@@ -140,7 +143,7 @@ const state= ()=> ({
                     id:2,
                     type:'button',
                     name:'Migrate database (database must be created and database credentials saved to env file)',
-                    icon:'mdi-file-upload',
+                    icon:'mdi-database-import',
                     method:'migrateDb',
                     params:[],
                     color:'#3f3f3fb6'
@@ -155,7 +158,7 @@ const state= ()=> ({
                     id:1,
                     type:'button',
                     name:'Git pull',
-                    icon:'mdi-file-plus',
+                    icon:'mdi-git',
                     method:'gitPull',
                     color:'#3f3f3fb6',
                 },
@@ -182,7 +185,7 @@ const state= ()=> ({
                             id:3,
                             type:'button',
                             name:'Set index route and initiate application',
-                            icon:'mdi-file-upload',
+                            icon:'mdi-server-plus',
                             method:'validate',
                             params:['nginx','initiateNginx',['nginxRoute']],
                             color:'#3f3f3fb6',
@@ -194,7 +197,7 @@ const state= ()=> ({
                 {
                     id:3,
                     type:'form',
-                    ref:'custom-query',
+                    ref:'customquery',
                     formComponents:[
                         {
                             id:1,
@@ -216,9 +219,9 @@ const state= ()=> ({
                             id:3,
                             type:'button',
                             name:'Run custom query',
-                            icon:'mdi-file-upload',
+                            icon:'mdi-database-edit',
                             method:'validate',
-                            params:['custom-query','runCustomQuery',['customQueryUserPassword','customQuery']],
+                            params:['customquery','runCustomQuery',['customQueryUserPassword','customQuery']],
                             color:'#3f3f3fb6',
                             showIf:'needDbAndUser'
                         }
@@ -228,7 +231,7 @@ const state= ()=> ({
                 {
                     id:4,
                     type:'form',
-                    ref:'custom-artisan',
+                    ref:'customartisan',
                     formComponents:[
                         {
                             id:1,
@@ -242,9 +245,9 @@ const state= ()=> ({
                             id:2,
                             type:'button',
                             name:'Run custom artisan command (write command without php artisan prefix)',
-                            icon:'mdi-file-upload',
+                            icon:'mdi-language-php',
                             method:'validate',
-                            params:['custom-artisan','runCustomArtisan',['customArtisan']],
+                            params:['customartisan','runCustomArtisan',['customArtisan']],
                             color:'#3f3f3fb6'
                         }
     

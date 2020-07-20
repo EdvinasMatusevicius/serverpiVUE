@@ -15,13 +15,6 @@
                         :dynamicMethodsHandler="dynamicMethodsHandler"
                     ></controlls-button>
                 </div>
-                    <!-- <div v-if="formComponent.type === 'button'" class="controlls__btn d-inline-flex justify-center">
-                        <div class="align-self-center">{{formComponent.name}}</div>
-                        <v-spacer></v-spacer>
-                        <v-btn @click="dynamicMethodsHandler(formComponent.method,formComponent.params ? formComponent.params : null)" outlined fab :color="formComponent.color" class="align-self-center">
-                            <v-icon>{{component.icon}}</v-icon>
-                        </v-btn>
-                    </div> -->
             </v-form>
         </div>
 </template>
@@ -33,11 +26,28 @@ import controllsButton from '@/components/shell/controlls-components/Shell-contr
 
 export default {
     name:"shell-component-form",
-    props:['component','variables','dynamicMethodsHandler'],
+    props:['component','variables'],
     components:{
         infoArea,
         textField,
         controllsButton,
+    },
+    methods:{
+        // seperate from components-main because validate need to reach vuetify form this.$ref 
+
+            // takes in method name and array of params in string form and calls needed method
+           dynamicMethodsHandler(method,params){
+               this[method](...params);
+           },
+           
+          //form validation by form reference
+           validate(ref,nextMethod,paramsToNextMethod){
+               if(this.$refs[ref].validate()){
+                   this.$emit('validationPass',[nextMethod,paramsToNextMethod]);
+                }else{
+                    console.log('Invalid input'); 
+                }
+           },
     }
     
 }

@@ -2,44 +2,25 @@
     <div>
         <!-- button -->
         <controlls-button
+            v-if="component.type === 'button'"
             :component="component"
             :dynamicMethodsHandler="dynamicMethodsHandler"
         ></controlls-button>
         <!-- textara -->
         <text-area
+            v-if="component.type === 'textarea'"
             :type="component.type"
             :model="$data[component.model]"
             @newEnvEditState2="(val)=>$data[component.model] = val"
         ></text-area>
         <!-- form -->
         <controlls-form
+            v-if="component.type === 'form'"
             :component="component"
             :variables="variables"
-            :dynamicMethodsHandler="dynamicMethodsHandler"
+            @validationPass="(val)=>$emit('validationPassTrain',val)"
         ></controlls-form>
-        <!-- <div v-if="component.type === 'form'">
-            <v-form :ref="component.ref">
-                <div v-for="formComponent in component.formComponents" :key="formComponent.id">
-                    <info-area
-                    :type="formComponent.type"
-                    :info="variables[formComponent.info]"
-                    ></info-area>
-
-                    <text-field
-                        :formComponent="formComponent"
-                        :variables="variables"
-                        :rules="rules"
-                    ></text-field>
-                </div>
-                     <div v-if="formComponent.type === 'button'" class="controlls__btn d-inline-flex justify-center">
-                        <div class="align-self-center">{{formComponent.name}}</div>
-                        <v-spacer></v-spacer>
-                        <v-btn @click="dynamicMethodsHandler(formComponent.method,formComponent.params ? formComponent.params : null)" outlined fab :color="formComponent.color" class="align-self-center">
-                            <v-icon>{{component.icon}}</v-icon>
-                        </v-btn>
-                    </div>
-            </v-form>
-        </div> -->
+       
     </div>
 </template>
 

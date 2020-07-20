@@ -33,6 +33,16 @@ Vue.use(VueRouter)
     name: 'Shell',
     component: () => import('../views/Shell.vue')
   },
+  {
+    path: '/panel',
+    name: 'Panel',
+    component: () => import('../views/Panel.vue')
+  },
+  {
+    path: '/new-project',
+    name: 'NewProjectForm',
+    component: () => import('../views/Panel.vue')
+  },
 ]
 
 const router = new VueRouter({

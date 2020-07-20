@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-form ref="form">
+        <v-form ref="userform">
             <vue-input       
                 v-for="(input,i) in inputs"
                 :key="i"
@@ -123,7 +123,8 @@ export default {
     },
     methods:{
         validate () {
-            if(this.$refs.form.validate()){
+            console.log(this.$refs);
+            if(this.$refs.userform.validate()){
                 switch (this.type) {
                     case 'log-in':
                         console.log(this.inputs.email.inputVal,this.inputs.password.inputVal)
