@@ -35,7 +35,8 @@ export default {
     computed:{
         ...mapGetters({
             register:"loginRegister/getRegister",
-            login:"loginRegister/getLogin"
+            login:"loginRegister/getLogin",
+            newApp:"newApp/getNewApp"
         })
     },
     methods:{

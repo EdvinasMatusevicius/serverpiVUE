@@ -1,7 +1,9 @@
 <template>
   <div>
     <route-name></route-name>
-    <form-component></form-component>
+    <form-component
+      type="newApp"
+    ></form-component>
 
   </div>
 </template>

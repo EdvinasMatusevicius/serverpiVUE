@@ -24,7 +24,7 @@ const state= ()=> ({
                 min:2,
                 max:20
             }],
-            }
+        }
         ,
         email:{
             inputModel:'email',

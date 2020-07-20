@@ -18,19 +18,28 @@ export default {
     data(){
         return {
             rules:this.getRules(),
-            inputModel:""
+            inputModel:"",
+            mutateMethod:this.setMutation(),
         }
     },
     watch:{
         inputModel: function(newVal){
             const modelInfo = {form:this.formtype,name:this.inputInfo.inputModel,value:newVal};
             console.log(modelInfo);
-            this.mutateModel(modelInfo);
+            this[this.mutateMethod](modelInfo);
         }
     },
+    created(){
+        console.log(this.mutateMethod);
+    },
     methods:{
+        setMutation(){
+            return (this.formtype ==='newApp')? "mutateModelApp" : "mutateModelAuth";
+        }
+        ,
         ...mapMutations({
-            mutateModel:"loginRegister/mutateModel"
+            mutateModelAuth:"loginRegister/mutateModel",
+            mutateModelApp:"newApp/mutateModel"
         }),
         getRules(){
              let rulesArr = [];
