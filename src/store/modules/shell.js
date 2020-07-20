@@ -17,7 +17,7 @@ const state= ()=> ({
                     type:'button',
                     name:'composer install',
                     icon:'mdi-package-down',
-                    color:'#4592af',
+                    color:'primary',
                     method:'composerInstall',
                 },
                 {
@@ -25,7 +25,7 @@ const state= ()=> ({
                     type:'button',
                     name:'npm install',
                     icon:'mdi-package-down',
-                    color:'#34b378',
+                    color:'secondary',
                     method:'npmInstall',
                 }
             ]
@@ -55,7 +55,7 @@ const state= ()=> ({
                     type:'button',
                     name:'Generate app key',
                     icon:'mdi-key-plus',
-                    color:'#4592af',
+                    color:'primary',
                     method:'generateAppKey',
                 },
                 {
@@ -63,7 +63,7 @@ const state= ()=> ({
                     type:'button',
                     name:'Link storage (filesystem driver must be set if not default)',
                     icon:'mdi-link-variant-plus',
-                    color:'#4592af',
+                    color:'primary',
                     method:'linkStorage',
                 },
                 {

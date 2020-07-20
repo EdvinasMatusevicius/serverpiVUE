@@ -17,7 +17,7 @@
 
 <script>
 // @ is an alias to /src
-import projectCard from '@/components/cards/Home-project-card.vue'
+import projectCard from '@/components/home/Home-project-card.vue'
 
 export default {
   name: 'Home',

@@ -1,18 +1,24 @@
 <template>
-    <div class="shell-panel">
-        <shell-controlls/>
-        <shell-output/>
+    <div>
+        <route-name></route-name>
+        <div class="shell-panel">
+            <shell-controlls/>
+            <shell-output/>
+        </div>
     </div>
 </template>
 
 <script>
 import ShellOutput from '@/components/shell/Shell-output.vue'
 import ShellControlls from '@/components/shell/Shell-controlls.vue'
+import routeName from '@/partials/Route-name.vue'
+
 export default {
     name:'shell-panel',
     components:{
         ShellControlls,
-        ShellOutput
+        ShellOutput,
+        routeName
     },
     data(){
         return{

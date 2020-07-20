@@ -7,6 +7,7 @@
         <router-link  to="/"><img class="logo" src="../assets/pi_logo.svg" alt=""></router-link>
         <v-spacer></v-spacer>
         
+        <v-btn text tile color="white" h5 class="text-decoration-none text-h6 font-weight-regular" to="/new-app">new app form</v-btn>
         <v-btn text tile color="white" h5 class="text-decoration-none text-h6 font-weight-regular" to="/panel">Panel</v-btn>
         <v-btn text tile color="white" h5 class="text-decoration-none text-h6 font-weight-regular" to="/shell">Shell</v-btn>
         <v-btn text tile color="white" h5 class="text-decoration-none text-h6 font-weight-regular" to="/about">About</v-btn>

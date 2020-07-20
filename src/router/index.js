@@ -30,18 +30,18 @@ Vue.use(VueRouter)
   },
   {
     path: '/shell',
-    name: 'Shell',
+    name: 'Project configuration',
     component: () => import('../views/Shell.vue')
   },
   {
     path: '/panel',
-    name: 'Panel',
+    name: 'Control panel',
     component: () => import('../views/Panel.vue')
   },
   {
-    path: '/new-project',
-    name: 'NewProjectForm',
-    component: () => import('../views/Panel.vue')
+    path: '/new-app',
+    name: 'New application form',
+    component: () => import('../views/New-app.vue')
   },
 ]
 

@@ -21,11 +21,11 @@
         <v-card-actions class="pt-0">
                 <v-spacer></v-spacer>
                 <v-btn class="text-decoration-none" target="_blank" fab depressed :href="projectLink">
-                  <v-icon x-large color="#4592af">mdi-arrow-up-circle-outline</v-icon>
+                  <v-icon x-large color="primary">mdi-arrow-up-circle-outline</v-icon>
                 </v-btn>
                 <v-spacer></v-spacer>
                 <v-btn class="text-decoration-none" target="_blank" fab depressed :href="gihub">
-                  <v-icon x-large color="#34b378">mdi-github</v-icon>
+                  <v-icon x-large color="accent">mdi-github</v-icon>
                 </v-btn>
                 <v-spacer></v-spacer>
         </v-card-actions>

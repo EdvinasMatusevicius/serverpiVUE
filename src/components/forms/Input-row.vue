@@ -1,7 +1,7 @@
 <template>
 
     <v-text-field
-        v-model="inputVal"
+        v-model="inputModel"
         :rules="rules"
         :type="inputInfo.type"
         :label="inputInfo.label"
@@ -11,21 +11,27 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
 export default {
     name:'dynamic-input',
-    props:['inputInfo'],
+    props:['inputInfo','formtype'],
     data(){
         return {
             rules:this.getRules(),
-            inputVal:this.inputInfo.inputVal
+            inputModel:""
         }
     },
     watch:{
-        inputVal: function(newVal){
-            this.$emit('newInputVal',newVal);
+        inputModel: function(newVal){
+            const modelInfo = {form:this.formtype,name:this.inputInfo.inputModel,value:newVal};
+            console.log(modelInfo);
+            this.mutateModel(modelInfo);
         }
     },
     methods:{
+        ...mapMutations({
+            mutateModel:"loginRegister/mutateModel"
+        }),
         getRules(){
              let rulesArr = [];
              this.inputInfo.validations.forEach(validation => {

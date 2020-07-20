@@ -1,9 +1,9 @@
 <template>
-    <div class="panel__btn d-inline-flex justify-center">
-        <v-spacer></v-spacer>
-        <div class="align-self-center">{{navigation.name}}</div>
-        <v-spacer></v-spacer>
-        <v-btn :to="navigation.route" outlined fab class="align-self-center text-decoration-none" color="green">
+    <div class="navigation__btn d-inline-flex justify-center">
+        <v-spacer class="spacer-hide-mobile"></v-spacer>
+        <div class="align-self-center navigation__name">{{navigation.name}}</div>
+        <v-spacer class="spacer-hide-mobile"></v-spacer>
+        <v-btn :to="navigation.route" outlined fab class="align-self-center text-decoration-none icon-btn" color="secondary">
             <v-icon>{{navigation.icon}}</v-icon>
         </v-btn>
     </div>
@@ -17,11 +17,21 @@ export default {
 </script>
 
 <style scoped lang="scss">
-    .panel{
+    .navigation{
         &__btn{
             background:#ffffffce;
-            border-bottom:1px solid #ebe8e8;
             margin-bottom: 1rem;
+        }
+        &__name{
+            color: #5a5a5a;
+        }
+    }
+    @media (max-width: 600px) {
+        .spacer-hide-mobile{
+            display: none;
+        }
+        .icon-btn{
+            margin-left: 1rem;
         }
     }
 </style>

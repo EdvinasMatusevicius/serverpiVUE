@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import form from "../components/forms/authentication/Form.vue";
+import form from "../components/forms/Form.vue";
 
 export default {
   name: "login-form",
@@ -16,7 +16,7 @@ export default {
   },
     data(){
     return {
-      login: 'log-in'
+      login: 'login'
     }
   }
   

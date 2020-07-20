@@ -1,13 +1,13 @@
 <template>
     <div class="container ">
-      <vue-form :type='register'>
+      <vue-form :type="register">
     </vue-form>
 
     </div>
 </template>
 
 <script>
-import form from "../components/forms/authentication/Form.vue";
+import form from "../components/forms/Form.vue";
 
 export default {
   name: "register-form",
