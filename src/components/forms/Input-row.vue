@@ -1,13 +1,22 @@
 <template>
-
-    <v-text-field
-        v-model="inputModel"
-        :rules="rules"
-        :type="inputInfo.type"
-        :label="inputInfo.label"
-        :name="inputInfo.name"
-    >
-    </v-text-field>
+    <div>
+        <v-text-field
+            v-if="showTextField()"
+            v-model="inputModel"
+            :rules="rules"
+            :type="inputInfo.type"
+            :label="inputInfo.label"
+            :name="inputInfo.name"
+        >
+        </v-text-field>
+        <v-select
+            v-if="showSelectField()"
+            v-model="inputModel"
+            :rules="rules"
+            :items="inputInfo.items"
+            :label="inputInfo.label"
+        ></v-select>
+    </div>   
 </template>
 
 <script>
@@ -25,12 +34,10 @@ export default {
     watch:{
         inputModel: function(newVal){
             const modelInfo = {form:this.formtype,name:this.inputInfo.inputModel,value:newVal};
-            console.log(modelInfo);
             this[this.mutateMethod](modelInfo);
         }
     },
     created(){
-        console.log(this.mutateMethod);
     },
     methods:{
         setMutation(){
@@ -41,6 +48,20 @@ export default {
             mutateModelAuth:"loginRegister/mutateModel",
             mutateModelApp:"newApp/mutateModel"
         }),
+        showTextField(){
+            const inputType = this.inputInfo.type;
+            if(inputType === 'text' || inputType === 'email' || inputType === 'password'){
+                return true
+            }
+            return false
+        },
+        showSelectField(){
+            const inputType = this.inputInfo.type;
+            if(inputType === 'select'){
+                return true
+            }
+            return false
+        },
         getRules(){
              let rulesArr = [];
              this.inputInfo.validations.forEach(validation => {

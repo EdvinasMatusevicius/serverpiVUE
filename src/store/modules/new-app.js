@@ -11,7 +11,7 @@ const state= ()=> ({
         applicationName:{
         inputModel:'applicationName',
         type:'text',
-        label:'Application name',
+        label:'Application\'s name',
         validations:[
         {
             validation:'required'
@@ -25,7 +25,7 @@ const state= ()=> ({
         applicationSlug:{
             inputModel:'applicationSlug',
             type:'text',
-            label:'Application slug that will be used in url, if left empty will be auto generated',
+            label:'Application\'s slug that will be used in url, if left empty will be auto generated',
             validations:[
                 {
                     validation:'required'
@@ -52,22 +52,32 @@ const state= ()=> ({
                 }
             ],
             },
-        // language:{
-        //     inputModel:'language',
-        //         type:'select',
-        //         label:'Repeat password',
-        //         validations:[
-        //             {
-        //             validation:'required'
-        //             },{
-        //             validation:'length',
-        //             min:8,
-        //             max:255
-        //             }
-        //         ],
-        //     }
-        },
-  })
+        language:{
+            inputModel:'language',
+            type:'select',
+            label:'Application\'s language',
+            items:[
+                {
+                    text: 'PHP website (php , laravel)',
+                    value: 1,
+                },
+                {
+                    text: 'NodeJs',
+                    value: 2,
+                },
+                {
+                    text: 'Static website (html css js)',
+                    value: 3,
+                },
+            ],
+            validations:[
+                {
+                validation:'required'
+                }
+            ],
+        }
+    },
+})
   const mutations = {
     mutateModel ({models},modelInfo){
         models[modelInfo.form][modelInfo.name] = modelInfo.value
