@@ -1,5 +1,6 @@
 <template>
      <v-text-field 
+        
         v-model="model"
         :type="formComponent.inputType"
         :label="formComponent.label"

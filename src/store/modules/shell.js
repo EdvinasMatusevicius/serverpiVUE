@@ -118,7 +118,7 @@ const state= ()=> ({
                             icon:'mdi-database-plus',
                             method:'validate',
                             params:['dbcreate','registerDb',['registerDbUserPassword']],
-                            color:'#3f3f3fb6',
+                            color:'brown lighten-1',
                             showIf:'needDbAndUser'
                         },
                         {
@@ -128,7 +128,7 @@ const state= ()=> ({
                             icon:'mdi-database-plus',
                             method:'createDb',
                             params:[],
-                            color:'#3f3f3fb6',
+                            color:'brown lighten-1',
                             showIf:'needDb'
                         },
                         {
@@ -146,7 +146,7 @@ const state= ()=> ({
                     icon:'mdi-database-import',
                     method:'migrateDb',
                     params:[],
-                    color:'#3f3f3fb6'
+                    color:'brown lighten-1'
                 }
             ]
         },
@@ -160,7 +160,7 @@ const state= ()=> ({
                     name:'Git pull',
                     icon:'mdi-git',
                     method:'gitPull',
-                    color:'#3f3f3fb6',
+                    color:'deep-orange darken-2',
                 },
                 {
                     id:2,
@@ -222,7 +222,7 @@ const state= ()=> ({
                             icon:'mdi-database-edit',
                             method:'validate',
                             params:['customquery','runCustomQuery',['customQueryUserPassword','customQuery']],
-                            color:'#3f3f3fb6',
+                            color:'brown lighten-1',
                             showIf:'needDbAndUser'
                         }
     
@@ -244,11 +244,11 @@ const state= ()=> ({
                         {
                             id:2,
                             type:'button',
-                            name:'Run custom artisan command (write command without php artisan prefix)',
+                            name:'Run custom artisan command (write command without "php artisan" prefix)',
                             icon:'mdi-language-php',
                             method:'validate',
                             params:['customartisan','runCustomArtisan',['customArtisan']],
-                            color:'#3f3f3fb6'
+                            color:'primary'
                         }
     
                     ]

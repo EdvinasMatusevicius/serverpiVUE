@@ -1,11 +1,15 @@
 <template>
   <div v-if="type === 'info-area'">
-            <v-textarea
-                disabled
+            <!-- <v-textarea
+                readonly
                 outlined
                 auto-grow
                 :value="info"
-            ></v-textarea>
+            ></v-textarea> -->
+            <code class="info-txt">
+                {{info}}
+            </code>
+                <v-icon>mdi-information-outline</v-icon>
         </div>
 </template>
 
@@ -17,5 +21,8 @@ export default {
 </script>
 
 <style>
-
+    .info-txt{
+        background-color: #767676 !important;
+        color: rgb(255, 255, 255) !important
+    }
 </style>
