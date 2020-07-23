@@ -1,11 +1,9 @@
-const state= ()=> ({
+export default ()=> ({
     models:{
-        newApp:{
-            applicationName: '',
-            applicationSlug: '',
-            giturl: '',
-            language: '',
-        }
+        applicationName: '',
+        applicationSlug: '',
+        giturl: '',
+        language: '',
     },
     newApp:{
         applicationName:{
@@ -78,21 +76,3 @@ const state= ()=> ({
         }
     },
 })
-  const mutations = {
-    mutateModel ({models},modelInfo){
-        models[modelInfo.form][modelInfo.name] = modelInfo.value
-    }
-  }
-  const actions = {
-  }
-  const getters = {
-    getNewApp:({newApp})=>newApp
-  }
-  
-  export default {
-      namespaced: true,
-      state,
-      mutations,
-      actions,
-      getters
-    }

@@ -152,8 +152,8 @@ export default {
             width: 100%;
             border:1px solid beige;
         }
-        &__form{
+        // &__form{
             //for forms inside shell controlls
-        }
+        // }
     }
 </style>

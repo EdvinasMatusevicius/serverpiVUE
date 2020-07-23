@@ -1,15 +1,9 @@
-const state= ()=> ({
+export default ()=> ({
     models:{
-        register:{
-            username: '',
-            email: '',
-            password: '',
-            repeatpassword: '',
-        },
-        login:{
-            email: '',
-            password: '',
-        },
+        username: '',
+        email: '',
+        password: '',
+        repeatpassword: '',
     },
     register:{
         username:{
@@ -70,51 +64,5 @@ const state= ()=> ({
                 }
             ],
         }
-    },
-
-    login:{
-        email:{
-            inputModel:'email',
-            type:'email',
-            label:'E-mail',
-            name:'email',
-            validations:[
-                {
-                validation:'required'
-                },
-            ]
-            },
-        password:{
-            inputModel:'password',
-            type:'password',
-            label:'Password',
-            name:'password',
-            validations:[
-                {
-                    validation:'required'
-                },
-            ]
-            },
-    },
-    
-
+    }
   })
-  const mutations = {
-    mutateModel ({models},modelInfo){
-        models[modelInfo.form][modelInfo.name] = modelInfo.value
-    }
-  }
-  const actions = {
-  }
-  const getters = {
-    getRegister:({register})=>register,
-    getLogin:({login})=>login
-  }
-  
-  export default {
-      namespaced: true,
-      state,
-      mutations,
-      actions,
-      getters
-    }

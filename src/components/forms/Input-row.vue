@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapMutations, mapActions } from 'vuex';
 export default {
     name:'dynamic-input',
     props:['inputInfo','formtype'],
@@ -28,25 +28,21 @@ export default {
         return {
             rules:this.getRules(),
             inputModel:"",
-            mutateMethod:this.setMutation(),
         }
     },
     watch:{
         inputModel: function(newVal){
-            const modelInfo = {form:this.formtype,name:this.inputInfo.inputModel,value:newVal};
-            this[this.mutateMethod](modelInfo);
+            const modelInfo = {name:this.inputInfo.inputModel,value:newVal};
+            this[this.formtype](modelInfo);
         }
     },
     created(){
     },
     methods:{
-        setMutation(){
-            return (this.formtype ==='newApp')? "mutateModelApp" : "mutateModelAuth";
-        }
-        ,
-        ...mapMutations({
-            mutateModelAuth:"loginRegister/mutateModel",
-            mutateModelApp:"newApp/mutateModel"
+        ...mapActions({
+            login:"login/mutateModel",
+            register:"register/mutateModel",
+            newApp:"newApp/mutateModel"
         }),
         showTextField(){
             const inputType = this.inputInfo.type;

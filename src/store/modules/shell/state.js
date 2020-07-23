@@ -1,4 +1,4 @@
-const state= ()=> ({
+export default ()=> ({
     models:{
         registerDbUserPassword:'',
         nginxRoute:'',
@@ -258,22 +258,3 @@ const state= ()=> ({
     ]
 
 })
-const mutations = {
-    mutateModel ({models},modelInfo){
-        models[modelInfo.model] = modelInfo.value
-    }
-}
-const actions = {
-}
-const getters = {
-    getControlls:({controlls})=>controlls,
-    getModels:({models})=>models
-}
-
-export default {
-    namespaced: true,
-    state,
-    mutations,
-    actions,
-    getters
-  }

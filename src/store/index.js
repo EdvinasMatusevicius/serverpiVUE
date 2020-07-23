@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import shell from './modules/shell'
-import panel from './modules/panel'
-import loginRegister from './modules/login-register'
-import newApp from './modules/new-app'
+import shell from './modules/shell/index'
+import panel from './modules/panel/index'
+import login from './modules/login/index'
+import register from './modules/register/index'
+import newApp from './modules/new-app/index'
 
 Vue.use(Vuex)
 
@@ -11,7 +12,8 @@ export default new Vuex.Store({
   modules: {
     shell,
     panel,
-    loginRegister,
+    login,
+    register,
     newApp,
   }
 })

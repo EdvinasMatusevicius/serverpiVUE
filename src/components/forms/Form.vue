@@ -16,7 +16,7 @@
 
 <script>
 import vueInput from './Input-row.vue';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 export default {
     name:'dynamic-form',
     props:['type'],
@@ -29,23 +29,26 @@ export default {
         }
     },
     created(){
-        console.log(this.register,this.type);
         this.inputs = this[this.type]
     },
     computed:{
         ...mapGetters({
-            register:"loginRegister/getRegister",
-            login:"loginRegister/getLogin",
+            register:"register/getForm",
+            login:"login/getForm",
             newApp:"newApp/getNewApp"
         })
     },
     methods:{
+        ...mapActions({
+            loginAction:'login/login'
+        }),
         validate () {
             console.log(this.$refs);
             if(this.$refs.formComponent.validate()){
                 switch (this.type) {
                     case 'login':
-                        console.log(this.inputs.email.inputVal,this.inputs.password.inputVal)
+                        this.loginAction();
+                        // console.log(this.inputs.email.inputVal,this.inputs.password.inputVal)
                         break;
                     case 'register':
                         console.log(this.inputs.username.inputVal,this.inputs.email.inputVal,this.inputs.password.inputVal);
