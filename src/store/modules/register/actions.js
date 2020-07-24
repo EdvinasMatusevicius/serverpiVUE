@@ -17,7 +17,8 @@ export default {
           'password_confirmation': payload.passwordRepeat
         },
         (tokenData) => {
-          dispatch('saveToken', tokenData);
+          dispatch('session/saveToken', tokenData,{root:true});
+          dispatch('session/mutateLogedStatus', true,{root:true});
         },
         (errors) => {
           console.log(errors);

@@ -1,1 +1,2 @@
 export const MUTATE_USER = 'MUTATE_USER';
+export const MUTATE_LOGED_STATUS = 'MUTATE_LOGED_STATUS';

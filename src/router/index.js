@@ -1,8 +1,28 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import store from '../store'
 
+// (()=>{
+//   console.log(store.getters['session/getIsLogedIn'])
+// })()
 Vue.use(VueRouter)
+
+const ifNotAuthenticated = (to, from, next) => {
+  if (!store.getters['session/getIsLogedIn']) {
+    next()
+    return
+  }
+  next('/')
+}
+
+const ifAuthenticated = (to, from, next) => {
+  if (store.getters['session/getIsLogedIn']) {
+    next()
+    return
+  }
+  next('/login')
+}
 
   const routes = [
   {
@@ -21,27 +41,32 @@ Vue.use(VueRouter)
   {
     path: '/login',
     name: 'Login',
-    component: () => import('../views/Login.vue')
+    component: () => import('../views/Login.vue'),
+    beforeEnter: ifNotAuthenticated,
   },
   {
     path: '/register',
     name: 'Register',
-    component: () => import('../views/Register.vue')
+    component: () => import('../views/Register.vue'),
+    beforeEnter: ifNotAuthenticated,
   },
   {
     path: '/shell',
     name: 'Project configuration',
-    component: () => import('../views/Shell.vue')
+    component: () => import('../views/Shell.vue'),
+    beforeEnter: ifAuthenticated,
   },
   {
     path: '/panel',
     name: 'Control panel',
-    component: () => import('../views/Panel.vue')
+    component: () => import('../views/Panel.vue'),
+    beforeEnter: ifAuthenticated,
   },
   {
     path: '/new-app',
     name: 'New application form',
-    component: () => import('../views/New-app.vue')
+    component: () => import('../views/New-app.vue'),
+    beforeEnter: ifAuthenticated,
   },
 ]
 

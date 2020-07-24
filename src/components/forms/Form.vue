@@ -38,30 +38,28 @@ export default {
             newApp:"newApp/getNewApp",
             loginModels:"login/getModels",
             registerModels:"register/getModels",
+            // newAppModels:"newApp/getModels",
+            isLogedIn:"session/getIsLogedIn"
         })
     },
     methods:{
         ...mapActions({
             loginAction:'login/login',
+            registerAction:'register/register',
+            // newAppAction:'newApp/',
         }),
         validate () {
             if(this.$refs.formComponent.validate()){
                 const action = this.type+'Action';
                 const models = this.type+'Models';
-                // this[action](this[models]);
-                switch (this.type) {
-                    case 'login':
-                        this.loginAction(this.loginModels);
-                        // console.log(this.inputs.email.inputVal,this.inputs.password.inputVal)
-                        break;
-                    case 'register':
-                        // console.log(this.inputs.username.inputVal,this.inputs.email.inputVal,this.inputs.password.inputVal);
-                        break;
-                    default:
-                        break;
-                }      
+                (async ()=>{
+                   await this[action](this[models]);
+                   if(this.isLogedIn){
+                        this.$router.push("panel")
+                        }
+                })()
             }
-      },
+        },
     }
 }
 </script>

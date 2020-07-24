@@ -1,5 +1,5 @@
 export default ()=> ({
     status: '',
-    token: localStorage.authToken || '',
-    user: {}
+    isLogedIn: !!localStorage.authToken,
+    user: null
   })

@@ -1,3 +1,4 @@
 export default {
-    getUser:({user})=>user
+    getUser:({user})=>user,
+    getIsLogedIn:({isLogedIn})=>isLogedIn,
   }

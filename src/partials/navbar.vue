@@ -7,21 +7,47 @@
         <router-link  to="/"><img class="logo" src="../assets/pi_logo.svg" alt=""></router-link>
         <v-spacer></v-spacer>
         
-        <v-btn text tile color="white" h5 class="text-decoration-none text-h6 font-weight-regular" to="/new-app">new app form</v-btn>
-        <v-btn text tile color="white" h5 class="text-decoration-none text-h6 font-weight-regular" to="/panel">Panel</v-btn>
-        <v-btn text tile color="white" h5 class="text-decoration-none text-h6 font-weight-regular" to="/shell">Shell</v-btn>
+        <v-btn v-if="isLogedIn" text tile color="white" h5 class="text-decoration-none text-h6 font-weight-regular" to="/new-app">new app form</v-btn>
+        <v-btn v-if="isLogedIn" text tile color="white" h5 class="text-decoration-none text-h6 font-weight-regular" to="/panel">Panel</v-btn>
+        <v-btn v-if="isLogedIn" text tile color="white" h5 class="text-decoration-none text-h6 font-weight-regular" to="/shell">Shell</v-btn>
         <v-btn text tile color="white" h5 class="text-decoration-none text-h6 font-weight-regular" to="/about">About</v-btn>
-        <v-btn text tile color="white" class="text-decoration-none text-h6 font-weight-regular" to="/login">Login</v-btn>
-        <v-btn text tile color="white" class="text-decoration-none mr-5 text-h6 font-weight-regular" to="/register">Register</v-btn>
+        <v-btn v-if="!isLogedIn" text tile color="white" class="text-decoration-none text-h6 font-weight-regular" to="/login">Login</v-btn>
+        <v-btn v-if="!isLogedIn" text tile color="white" class="text-decoration-none mr-5 text-h6 font-weight-regular" to="/register">Register</v-btn>
         
-
+        <user-menu
+             v-if="(isLogedIn && userInfo)"
+            :email="userInfo.email"
+        ></user-menu>
+        
     </v-app-bar>
 </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
+import userMenu from '@/components/navbar/User-menu'
+
 export default {
-    name:'navbar'
+    name:'navbar',
+    components:{
+        userMenu
+    },
+    created(){
+        if(this.isLogedIn && !this.userInfo){
+            this.getUserData()
+        }
+    },
+    computed:{
+        ...mapGetters({
+            userInfo:"session/getUser",
+            isLogedIn:"session/getIsLogedIn"
+        })
+    },
+    methods:{
+        ...mapActions({
+            getUserData:"session/getUserData"
+        })
+    }
 }
 </script>
 

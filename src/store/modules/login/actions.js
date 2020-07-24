@@ -17,7 +17,8 @@ export default {
         },
         (tokenData) => {
           dispatch('session/saveToken', tokenData,{root:true});
-          console.log('prisijungeme sekmingai');
+          dispatch('session/mutateLogedStatus', true,{root:true});
+          console.log('prisijungeme sekmingai');//REDIRECT TO PANEL
         },
         (errors) => {
           console.log(errors);
@@ -26,6 +27,15 @@ export default {
     },
   
     async logout() {
+      await api.logout(
+        () => {
+          dispatch('session/mutateLogedStatus', false,{root:true});
+          localStorage.removeItem('authToken');
+        },
+        (errors) => {
+          console.error(errors);
+        }
+      )
       localStorage = {};
     },
   

@@ -17,6 +17,20 @@ export default {
       failure(errorsMessages);
     }
   },
+  
+  logout:async (success, failure) => {
+    try {
+      const response = await api().post(API_URL + 'auth/logout');
+      success();
+    } catch (context) {
+      let errorsMessages = [];
+      const { errors } = context.response.data;
+      for (const errorName in errors) {
+        errorsMessages = [...errorsMessages, ...errors[errorName]];
+      }
+      failure(errorsMessages);
+    }
+  },
 
   register: async (body, success, failure) => {
     try {
@@ -34,7 +48,6 @@ export default {
 
   getUser: async (success, failure) => {
     try {
-        console.log('pries get user requesta in api folder');
       const response = await api().get(API_URL + 'user');
       success(response);
     } catch (context) {
@@ -47,7 +60,7 @@ export default {
     }
   },
 
-  fetchProjects: async (success, failure) => {
+  fetchProjects: async (success, failure) => {//nepritaikyta
     try {
       const response = await api().get(API_URL + 'products');
       success(response.data);
