@@ -1,3 +1,4 @@
 export default {
-    getForm:({login})=>login
+    getForm:({login})=>login,
+    getModels:({models})=>models
   }

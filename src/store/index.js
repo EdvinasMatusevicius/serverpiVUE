@@ -5,6 +5,7 @@ import panel from './modules/panel/index'
 import login from './modules/login/index'
 import register from './modules/register/index'
 import newApp from './modules/new-app/index'
+import session from './modules/session/index'
 
 Vue.use(Vuex)
 
@@ -15,5 +16,6 @@ export default new Vuex.Store({
     login,
     register,
     newApp,
+    session
   }
 })

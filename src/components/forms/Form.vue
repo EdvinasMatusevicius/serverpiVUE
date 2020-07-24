@@ -35,23 +35,27 @@ export default {
         ...mapGetters({
             register:"register/getForm",
             login:"login/getForm",
-            newApp:"newApp/getNewApp"
+            newApp:"newApp/getNewApp",
+            loginModels:"login/getModels",
+            registerModels:"register/getModels",
         })
     },
     methods:{
         ...mapActions({
-            loginAction:'login/login'
+            loginAction:'login/login',
         }),
         validate () {
-            console.log(this.$refs);
             if(this.$refs.formComponent.validate()){
+                const action = this.type+'Action';
+                const models = this.type+'Models';
+                // this[action](this[models]);
                 switch (this.type) {
                     case 'login':
-                        this.loginAction();
+                        this.loginAction(this.loginModels);
                         // console.log(this.inputs.email.inputVal,this.inputs.password.inputVal)
                         break;
                     case 'register':
-                        console.log(this.inputs.username.inputVal,this.inputs.email.inputVal,this.inputs.password.inputVal);
+                        // console.log(this.inputs.username.inputVal,this.inputs.email.inputVal,this.inputs.password.inputVal);
                         break;
                     default:
                         break;

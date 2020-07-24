@@ -1,0 +1,1 @@
+export const MUTATE_USER = 'MUTATE_USER';
