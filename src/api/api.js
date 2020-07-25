@@ -1,9 +1,12 @@
-import axios from 'axios';
+import axios from 'axios'
+import store from '../store'
+import router from '../router/index'
 
 const API_URL = 'http://serverpi.ddns.me/api/';
 const api = () => createApiInstance();
 
 export default {
+  //--------------------------------------------------------------USER AUTH AND SESSION
   login: async (body, success, failure) => {
     try {
       const response = await api().post(API_URL + 'auth/login', body);
@@ -17,7 +20,7 @@ export default {
       failure(errorsMessages);
     }
   },
-  
+
   logout:async (success, failure) => {
     try {
       const response = await api().post(API_URL + 'auth/logout');
@@ -45,7 +48,7 @@ export default {
       failure(errorsMessages);
     }
   },
-
+//----------------------------------------------------------------------------GETERS FROM DATABASE
   getUser: async (success, failure) => {
     try {
       const response = await api().get(API_URL + 'user');
@@ -56,7 +59,7 @@ export default {
       for (const errorName in errors) {
         errorsMessages = [...errorsMessages, ...errors[errorName]];
       }
-      failure(errorsMessages);
+      failure(context);
     }
   },
 
@@ -74,19 +77,30 @@ export default {
     }
   }
 }
-
+//--------------------------------------------------------------------------------------------AXIOS HEADER CONFIGURATION
 function createApiInstance() {
-    if (localStorage.authToken) {
-        const authToken = JSON.parse(localStorage.authToken);
-    // Automatiškai grąžinamas autorizuotas axios instance, 
-    return axios.create({
+    
+    if (localStorage.getItem('authToken')) {
+        const authToken = JSON.parse(localStorage.getItem('authToken'));
+    const instance = axios.create({
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + authToken
       }
-    })
+    });
+    instance.interceptors.response.use(undefined,function(err){
+      return new Promise(function (resolve, reject) {
+
+        if (err.response.status === 401 && err.config) {
+          store.dispatch('session/mutateLogedStatus',false);
+          router.push('login');
+          resolve();
+        }
+        throw err;
+      });
+    });
+    return instance;
   } else {
-    // Automatiškai grąžinamas NEautorizuotas axios instance, 
     return axios.create({
       headers: {
         'Content-Type': 'application/json'

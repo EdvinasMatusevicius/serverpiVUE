@@ -36,8 +36,13 @@ export default {
     props:['email'],
     methods:{
         ...mapActions({
-            logout:"login/logout"
-        })
+            logoutAction:"login/logout"
+        }),
+        logout(){
+            this.logoutAction().then(()=>{
+                this.$router.push("login");
+            })
+        }
     }
 }
 </script>

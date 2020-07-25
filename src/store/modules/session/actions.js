@@ -9,9 +9,14 @@ export default {
     mutateUser({commit},userInfo){
       commit(MUTATE_USER,userInfo);
     },
+    
     mutateLogedStatus({commit},boolVal){
+      if(!boolVal && localStorage.getItem('authToken')){
+        localStorage.removeItem('authToken')
+      }
       commit(MUTATE_LOGED_STATUS,boolVal);
     },
+
     saveToken({ dispatch }, tokenData) {
       const token = JSON.stringify(tokenData);
       localStorage.setItem('authToken', token);
@@ -26,13 +31,10 @@ export default {
             dispatch('mutateUser',data)
           },
           (errors) => {
-            console.error(errors);
+            console.log(errors);
           }
         )
       }
     },
-    changeLogedStatus({dispatch},boolVal){
-
-    }
 
 }

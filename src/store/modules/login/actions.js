@@ -26,17 +26,15 @@ export default {
       )
     },
   
-    async logout() {
+    async logout({ dispatch }) {
       await api.logout(
         () => {
-          dispatch('session/mutateLogedStatus', false,{root:true});
-          localStorage.removeItem('authToken');
+          dispatch('session/mutateLogedStatus',false,{root:true});
         },
         (errors) => {
           console.error(errors);
         }
       )
-      localStorage = {};
     },
   
     saveDataToLocalStorage({ commit }, email) {
