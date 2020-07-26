@@ -3,12 +3,12 @@
         
         <v-icon v-if="project.language == '1'" color="primary" class="row__language">mdi-language-php</v-icon>
         <div class="d-flex justify-center row__name">
-            {{project.name}}
+            {{project.applicationName}}
         </div>
         <div class="row__controls justify-md-end">
             <v-btn class="ml-1" color="primary" outlined tile small v-if="project.deployed" :href="projectUrl"><v-icon left>mdi-door-open</v-icon>Open project</v-btn>
-            <v-btn class="ml-1" color="accent" outlined tile small :href="project.github"><v-icon left>mdi-github</v-icon>Github</v-btn>
-            <v-btn class="ml-1 text-decoration-none" color="secondary" outlined tile small to="/shell"><v-icon left>mdi-cog</v-icon>Project setup</v-btn>
+            <v-btn class="ml-1" color="accent" outlined tile small :href="project.giturl"><v-icon left>mdi-github</v-icon>Github</v-btn>
+            <v-btn class="ml-1 text-decoration-none" color="secondary" outlined tile small :to="projectSetup"><v-icon left>mdi-cog</v-icon>Project setup</v-btn>
         </div>
     </div>
 </template>
@@ -20,11 +20,15 @@ export default {
     data(){
         return{
             projectUrl: this.projectUrlBuid(),
+            projectSetup:this.projectSetupUrl()
         }
     },
     methods:{
-        projectUrlBuid:function(){
+        projectUrlBuid(){
             return `http://${this.project.slug}.serverpi.ddns.me/`
+        },
+        projectSetupUrl(){
+            return `/shell/${this.project.slug}`
         }
     }
 }

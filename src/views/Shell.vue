@@ -22,7 +22,7 @@ export default {
     },
     data(){
         return{
-
+            routeParam:this.$route.params,
         }
     }
     

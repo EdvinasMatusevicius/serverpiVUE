@@ -1,4 +1,8 @@
 export default ()=> ({
+    shell:{
+        output:'',
+        errors:'',
+    },
     models:{
         registerDbUserPassword:'',
         nginxRoute:'',

@@ -1,1 +1,1 @@
-// export const MUTATE_MODEL = 'MUTATE_MODEL';
+export const MUTATE_PROJECTS = 'MUTATE_PROJECTS';

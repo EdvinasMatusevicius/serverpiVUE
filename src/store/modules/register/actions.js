@@ -11,13 +11,13 @@ export default {
     async register({ dispatch }, payload) {
       await api.register(
         {
-          name: payload.name,
+          name: payload.username,
           email: payload.email,
           password: payload.password,
-          'password_confirmation': payload.passwordRepeat
+          'password_confirmation': payload.repeatpassword
         },
         (tokenData) => {
-          dispatch('session/saveToken', tokenData,{root:true});
+          dispatch('session/saveToken', tokenData.token,{root:true});
           dispatch('session/mutateLogedStatus', true,{root:true});
         },
         (errors) => {

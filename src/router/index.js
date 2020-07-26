@@ -51,9 +51,15 @@ const ifAuthenticated = (to, from, next) => {
     beforeEnter: ifNotAuthenticated,
   },
   {
-    path: '/shell',
+    path: '/shell/:slug',
     name: 'Project configuration',
     component: () => import('../views/Shell.vue'),
+    beforeEnter: ifAuthenticated,
+  },
+  {
+    path: '/shell-solo',
+    name: 'shell output',
+    component: () => import('../views/ShellSolo.vue'),
     beforeEnter: ifAuthenticated,
   },
   {

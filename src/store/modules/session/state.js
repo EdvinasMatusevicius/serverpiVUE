@@ -1,5 +1,5 @@
 export default ()=> ({
-    status: '',
+    reqStatus: false,
     isLogedIn: !!localStorage.getItem('authToken'),
     user: null
   })

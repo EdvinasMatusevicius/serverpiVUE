@@ -1,6 +1,7 @@
 import {
     MUTATE_USER,
-    MUTATE_LOGED_STATUS
+    MUTATE_LOGED_STATUS,
+    MUTATE_REQ_STATUS
 } from './mutation-types'
 import api from '@/api/api.js'
 
@@ -9,7 +10,9 @@ export default {
     mutateUser({commit},userInfo){
       commit(MUTATE_USER,userInfo);
     },
-    
+    mutateReqStatus({commit},status){
+      commit(MUTATE_REQ_STATUS,status);
+    },
     mutateLogedStatus({commit},boolVal){
       if(!boolVal && localStorage.getItem('authToken')){
         localStorage.removeItem('authToken')

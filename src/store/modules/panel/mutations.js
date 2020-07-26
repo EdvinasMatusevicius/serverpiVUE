@@ -1,9 +1,9 @@
 import {
-    // MUTATE_MODEL
+    MUTATE_PROJECTS
 } from './mutation-types'
 
 export default {
-    // [MUTATE_MODEL]({models},modelInfo){
-    //     models[modelInfo.form][modelInfo.name] = modelInfo.value
-    // }
+    [MUTATE_PROJECTS](state,projectList){
+        state.projects = projectList
+    }
   }

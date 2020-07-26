@@ -10,6 +10,7 @@
         <v-btn v-if="isLogedIn" text tile color="white" h5 class="text-decoration-none text-h6 font-weight-regular" to="/new-app">new app form</v-btn>
         <v-btn v-if="isLogedIn" text tile color="white" h5 class="text-decoration-none text-h6 font-weight-regular" to="/panel">Panel</v-btn>
         <v-btn v-if="isLogedIn" text tile color="white" h5 class="text-decoration-none text-h6 font-weight-regular" to="/shell">Shell</v-btn>
+        <v-btn v-if="isLogedIn" text tile color="white" h5 class="text-decoration-none text-h6 font-weight-regular" to="/shell-solo">Shell solo</v-btn>
         <v-btn text tile color="white" h5 class="text-decoration-none text-h6 font-weight-regular" to="/about">About</v-btn>
         <v-btn v-if="!isLogedIn" text tile color="white" class="text-decoration-none text-h6 font-weight-regular" to="/login">Login</v-btn>
         <v-btn v-if="!isLogedIn" text tile color="white" class="text-decoration-none mr-5 text-h6 font-weight-regular" to="/register">Register</v-btn>

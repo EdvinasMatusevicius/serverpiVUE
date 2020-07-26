@@ -38,7 +38,7 @@ export default {
             newApp:"newApp/getNewApp",
             loginModels:"login/getModels",
             registerModels:"register/getModels",
-            // newAppModels:"newApp/getModels",
+            newAppModels:"newApp/getModels",
             isLogedIn:"session/getIsLogedIn"
         })
     },
@@ -46,7 +46,7 @@ export default {
         ...mapActions({
             loginAction:'login/login',
             registerAction:'register/register',
-            // newAppAction:'newApp/',
+            newAppAction:'newApp/addProject',
         }),
         validate () {
             if(this.$refs.formComponent.validate()){
@@ -54,7 +54,7 @@ export default {
                 const models = this.type+'Models';
                 (async ()=>{
                    await this[action](this[models]);
-                   if(this.isLogedIn){
+                   if(this.isLogedIn && this.type !== 'newApp'){
                         this.$router.push("panel")
                         }
                 })()

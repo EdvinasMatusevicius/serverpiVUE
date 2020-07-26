@@ -1,4 +1,5 @@
 export default {
   getControlls:({controlls})=>controlls,
-  getModels:({models})=>models
+  getModels:({models})=>models,
+  getShell:({shell})=>shell
 }

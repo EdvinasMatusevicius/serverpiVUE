@@ -28,8 +28,6 @@ export default ()=> ({
                 {
                     validation:'required'
                 },{
-                    validation:'email'
-                },{
                     validation:'length',
                     min:3,
                     max:255

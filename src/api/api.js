@@ -2,6 +2,7 @@ import axios from 'axios'
 import store from '../store'
 import router from '../router/index'
 
+
 const API_URL = 'http://serverpi.ddns.me/api/';
 const api = () => createApiInstance();
 
@@ -38,7 +39,8 @@ export default {
   register: async (body, success, failure) => {
     try {
       const response = await api().post(API_URL + 'auth/register', body);
-      success(response.data);
+      console.log(response,'sitas api vidui')
+      success(response.data.data);
     } catch (context) {
       let errorsMessages = [];
       const { errors } = context.response.data;
@@ -46,6 +48,33 @@ export default {
         errorsMessages = [...errorsMessages, ...errors[errorName]];
       }
       failure(errorsMessages);
+    }
+  },
+//---------------------------------------------------------------------------- NEW APPLICATION POST
+
+  addProject: async(body,success,failure)=>{
+    try {
+      const response = await api().post(API_URL + 'new-application', body);
+      success(response);
+    } catch (context) {
+      let errorsMessages = [];
+      const { errors } = context.response.data;
+      for (const errorName in errors) {
+        errorsMessages = [...errorsMessages, ...errors[errorName]];
+      }
+      failure(errorsMessages);
+    }
+  },
+  //-------------------------------------------------------------------------ONE BUTTON SHELL COMANDS
+  
+  //---------------------------------------------------------------------------SHELL OUTPUT GETTER
+  getShell: async(success,failure)=>{
+    try {
+      const response = await api().get(API_URL + 'shell-values');
+      console.log(response,'api response')
+      success(response.data.data);
+    } catch (error) {
+      failure(error);
     }
   },
 //----------------------------------------------------------------------------GETERS FROM DATABASE
@@ -63,10 +92,10 @@ export default {
     }
   },
 
-  fetchProjects: async (success, failure) => {//nepritaikyta
+  getProjects: async (success, failure) => {
     try {
-      const response = await api().get(API_URL + 'products');
-      success(response.data);
+      const response = await api().get(API_URL + 'app-list');
+      success(response.data.data.appList);
     } catch (context) {
       let errorsMessages = [];
       const { errors } = context.response.data;
@@ -94,6 +123,7 @@ function createApiInstance() {
         if (err.response.status === 401 && err.config) {
           store.dispatch('session/mutateLogedStatus',false);
           router.push('login');
+          
           resolve();
         }
         throw err;

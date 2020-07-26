@@ -1,24 +1,48 @@
 <template>
   <div class="shell">
             <div class="shell__output-name">Shell output</div>
-            <p class="shell__output ma-0">0 updates can be installed immediately.
-                0 of these updates are security updates. <br>
-                The list of available updates is more than a week old.
-                To check for new updates run: sudo apt update <br>
-                This message is shown once once a day. To disable it please create the
-                /home/edvinas/.hushlogin file. <br>
-                edvinas@DESKTOP-QKU5QGG:/mnt/c/Users/Edvinas$</p>
+            <p class="shell__output ma-0">{{shell.output}}</p>
             <div class="shell__error-name">Shell error output</div>
-            <p class="shell__error ma-0">/home/edvinas/.hushlogin file. <br>
-                edvinas@DESKTOP-QKU5QGG:/mnt/c/Users/Edvinas$ ssh pi@192.168.0.101 <br>
-                pi@192.168.0.101's password: <br>
-                edvinas@DESKTOP-QKU5QGG:/mnt/c/Users/Edvinas$ errrrrrooor</p>
+            <p class="shell__error ma-0">{{shell.errors}}</p>
         </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 export default {
-    name:'shell-output'
+    name:'shell-output',
+    computed:{
+        ...mapGetters({
+            shell:"shell/getShell",
+            reqStatus:"session/getReqStatus"
+        })
+    },
+    mounted(){
+        if(this.reqStatus){
+            this.getShellLoop()
+        }
+    },
+    watch:{
+        reqStatus:function(newVal){
+            if(newVal){
+                this.getShellLoop()
+            }
+        }
+    },
+    methods:{
+        ...mapActions({
+            getShell:"shell/getShell"
+        }),
+        getShellLoop(){
+            setTimeout(() => {
+                this.getShell();
+                if(this.reqStatus){
+                    this.getShellLoop()
+                }
+            }, 700);
+        }
+    }
+
 }
 </script>
 
@@ -40,6 +64,8 @@ export default {
             color: #ffffff;
             padding: 0.5rem;
             font-size: 0.9rem;
+            white-space: pre-wrap;
+
 
             &-name{
                 grid-area: outName;

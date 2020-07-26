@@ -18,7 +18,6 @@ export default {
         (tokenData) => {
           dispatch('session/saveToken', tokenData,{root:true});
           dispatch('session/mutateLogedStatus', true,{root:true});
-          console.log('prisijungeme sekmingai');//REDIRECT TO PANEL
         },
         (errors) => {
           console.log(errors);

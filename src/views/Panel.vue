@@ -10,7 +10,7 @@
               </div>
               <div class="panel__project-list">
                   <panel-project-row
-                  v-for="project of projects" :key="project.name"
+                  v-for="project of projects" :key="project.applicationName"
                   :project="project"
                   ></panel-project-row>
               </div>
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import panelNavigation from '@/components/panel/Panel-navigation.vue'
 import panelProjectRow from '@/components/panel/Panel-project-row.vue'
 import routeName from '@/partials/Route-name.vue'
@@ -30,10 +30,18 @@ export default {
         panelProjectRow,
         routeName
     },
+    created(){
+        this.getProjects();
+    },
     computed:{
         ...mapGetters({
             projects:"panel/getProjects",
             navigations:"panel/getNavigations"
+        })
+    },
+    methods:{
+        ...mapActions({
+            getProjects:"panel/getProjects"
         })
     }
 
