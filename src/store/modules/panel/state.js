@@ -4,7 +4,7 @@ export default ()=> ({
         {
           id:1,
           name:'Add new project',
-          route:'/new-project',
+          route:'/new-app',
           icon:'mdi-plus-box',
           color:''
         },

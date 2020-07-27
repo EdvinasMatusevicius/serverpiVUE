@@ -65,13 +65,22 @@ export default {
       failure(errorsMessages);
     }
   },
-  //-------------------------------------------------------------------------ONE BUTTON SHELL COMANDS
-  
+  //--------------------------------------------------------------------------------- SHELL COMMANDS
+  runShellCmd: async(body,success,failure)=>{
+    try {
+      const response = await api().post(API_URL + body.slug+'/shell/'+body.route,body);
+      console.log(response,'api command execution success')
+      success(response.data);
+    } catch (error) {
+      failure(error);
+    }
+  },
+
   //---------------------------------------------------------------------------SHELL OUTPUT GETTER
   getShell: async(success,failure)=>{
     try {
       const response = await api().get(API_URL + 'shell-values');
-      console.log(response,'api response')
+      console.log(response,'api shell values get')
       success(response.data.data);
     } catch (error) {
       failure(error);

@@ -1,13 +1,8 @@
 <template>
-  <div v-if="type === 'info-area'">
-            <!-- <v-textarea
-                readonly
-                outlined
-                auto-grow
-                :value="info"
-            ></v-textarea> -->
+  <div>
+
             <code class="info-txt">
-                {{info}}
+                {{this[info]}}
             </code>
                 <v-icon>mdi-information-outline</v-icon>
         </div>
@@ -16,7 +11,18 @@
 <script>
 export default {
     name:"shell-component-infoarea",
-    props:['info','type'],
+    props:['info','type','user','db'],
+    data(){
+        return{
+            dbinfo:`DB_CONNECTION=mysql
+                    DB_HOST=127.0.0.1
+                    DB_PORT=3306
+                    DB_DATABASE=${this.db}
+                    DB_USERNAME=${this.user}
+                    DB_PASSWORD={your db user password)`,
+            nginxRouteInfo:`If index file in root write /  if in folder public write /public and so on`,
+        }
+    }
 }
 </script>
 

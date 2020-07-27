@@ -4,21 +4,17 @@
         <controlls-button
             v-if="component.type === 'button'"
             :component="component"
-            :dynamicMethodsHandler="dynamicMethodsHandler"
         ></controlls-button>
         <!-- textara -->
         <text-area
             v-if="component.type === 'textarea'"
             :type="component.type"
-            :model="$data[component.model]"
-            @newEnvEditState2="(val)=>$data[component.model] = val"
+            :model="component.model"
         ></text-area>
         <!-- form -->
         <controlls-form
             v-if="component.type === 'form'"
             :component="component"
-            :variables="variables"
-            @validationPass="(val)=>$emit('validationPassTrain',val)"
         ></controlls-form>
        
     </div>
@@ -32,7 +28,7 @@ import controllsButton from '@/components/shell/controlls-components/Shell-contr
 import controllsForm from '@/components/shell/controlls-components/Shell-controlls-form.vue';
 export default {
     name:'shell-controll-components',
-    props:['component', 'dynamicMethodsHandler','model','variables'],
+    props:['component','model'],
     components:{
         textArea,
         infoArea,
@@ -40,19 +36,7 @@ export default {
         controllsButton,
         controllsForm
     },
-    data(){
-        return{
-            areaData:this.model?this.model:'',
-        }
-    },
-    watch:{
-        areaData: function(newVal){
-            this.$emit('newEnvEditState',newVal);
-        },
-        model:function(){
-            this.areaData= this.model
-        }
-    },
+
     
 }
 </script>

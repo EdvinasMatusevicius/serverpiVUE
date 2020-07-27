@@ -9,22 +9,39 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
 export default {
     name:"shell-component-textarea",
-    props:['model','type'],
+    props:['model','type'],   //model 
     data(){
         return{
-            areaData:this.model
+            areaData:'',
+            watchedModel:'models.'+this.model
         }
     },
-    watch:{
-        textModel: function(newVal){
-            this.$emit('newEnvEditState2',newVal);
+    computed:{
+        ...mapGetters({
+            models:"shell/getModels"
+        })
+    },
+    watch:{//to do nested dynamic watcher
+        'models.envVars': function(newVal,oldval){
+            console.log('models watch trigered')
+            this.areaData = this.models[this.model];
         },
-        model:function(){
-            this.areaData= this.model
+        areaData:function(newVal){
+           const mutateModelPayload ={
+               model:this.model,
+               value:newVal
+           };
+            this.mutateModel(mutateModelPayload);
         }
     },
+    methods:{
+        ...mapActions({
+            mutateModel:"shell/mutateModel"
+        })
+    }
 }
 </script>
 

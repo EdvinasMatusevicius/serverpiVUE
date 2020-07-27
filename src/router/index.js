@@ -74,6 +74,12 @@ const ifAuthenticated = (to, from, next) => {
     component: () => import('../views/New-app.vue'),
     beforeEnter: ifAuthenticated,
   },
+  {
+    path: '/*',
+    name: 'About',
+    component: () => import('../views/About.vue')  //create 404 PAGE
+
+  },
 ]
 
 const router = new VueRouter({

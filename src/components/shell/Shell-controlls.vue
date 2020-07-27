@@ -9,14 +9,8 @@
                     <shell-component
                         :ref="component.ref? component.ref : null"
                         :component="component"
-                        :dynamicMethodsHandler="dynamicMethodsHandler"
-                        :variables="variables"
-                        :model="component.model?$data[component.model] : false"
-                         @newEnvEditState="(val)=>$data[component.model] = val"
-                         @validationPassTrain="(val)=>dynamicMethodsHandler(...val)"
-                        >
+                    >
                     </shell-component>
-
                         
                 </div>
 
@@ -33,110 +27,12 @@ export default {
     components:{
         ShellComponent
     },
-    data(){
-           return{
-            areaData:"",
-            variables:{
-                dbinfo:`DB_CONNECTION=mysql
-                    DB_HOST=127.0.0.1
-                    DB_PORT=3306
-                    DB_DATABASE=serverpi
-                    DB_USERNAME=root
-                    DB_PASSWORD=`,//run showDbVariables method
-                nginxRouteInfo:`If index file in root write /  if in folder public write /public and so on`,
-                needDbAndUser:this.needDatabaseUser(), //write has db user method
-                needDb:this.needDatabase(),//same here
-                registerDbUserPassword:'',
-            },
-           }
-    },
     computed:{
         ...mapGetters({
             controlls:"shell/getControlls",
             models:"shell/getModels"
         })
-    },
-    methods:{
-           // takes in method name and array of params in string form and calls needed method
-           dynamicMethodsHandler(method,params){
-               this[method](...params);
-           },
-
-            //methods to get values for variables object
-            showDbVariables(){
-               const projectName = 'serverpi';
-               const username = 'dude';
-               return `DB_CONNECTION=mysql
-                DB_HOST=127.0.0.1
-                DB_PORT=3306
-                DB_DATABASE=${projectName}
-                DB_USERNAME=${username}
-                DB_PASSWORD=(your mysql user password)`;
-            },
-             needDatabaseUser(){
-                return true
-            },
-            needDatabase(){
-                if(this.needDatabaseUser()){
-                    return false
-                }
-                return true
-            },
-        //    --------------------------------------------------------------
-           composerInstall(){
-
-           },
-           npmInstall(){
-
-           },
-           copyEnvExampe(){
-
-           },
-           createEnvFile(){
-
-           },
-           generateAppKey(){
-
-           },
-           linkStorage(){
-
-           },
-           fillEnvTextArea(model){
-               this[model]="";
-               //get from back
-               this[model]=
-               `bam bam
-                biri bam
-                slam gam slaman fucl`;
-           },
-           saveEditedEnvData(model){
-               // save to back
-               this[model]="";
-           },
-           registerDb(password){
-               if(password === undefined){
-                   console.log('db create with existing user')
-               }
-               if(password){
-                   console.log('atejo iki register db  ' + this.models[password])
-               }
-           },
-           migrateDb(){
-
-           },
-           gitPull(){
-
-           },
-           initiateNginx(route){
-               console.log(route);
-           },
-           runCustomQuery(password,query){
-
-           },
-           runCustomArtisan(artisanCommand){
-
-           },
-       },
+    }
 }
 </script>
 
@@ -150,10 +46,10 @@ export default {
 
         &__btn{
             width: 100%;
-            border:1px solid beige;
         }
-        // &__form{
-            //for forms inside shell controlls
-        // }
+        &__form{
+            border:5px #eeeeee;
+            border-style: groove;
+        }
     }
 </style>

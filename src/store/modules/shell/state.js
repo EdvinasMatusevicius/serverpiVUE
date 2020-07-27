@@ -4,14 +4,14 @@ export default ()=> ({
         errors:'',
     },
     models:{
+        envVars:'',
         registerDbUserPassword:'',
-        nginxRoute:'',
+        path:'',
         customQueryUserPassword:'',
-        customQuery:'',
-        customArtisan:'',
+        customquery:'',
+        artisanCmd:'',
     },
     controlls:[
-        //forComponent's button params composition [name of form ref , after validation name of next method to run, array of arguments to pass to next method]
         {
             id:1,
             groupName:'Package installation',
@@ -22,7 +22,7 @@ export default ()=> ({
                     name:'composer install',
                     icon:'mdi-package-down',
                     color:'primary',
-                    method:'composerInstall',
+                    route:'composer_install',
                 },
                 {
                     id:2,
@@ -30,7 +30,7 @@ export default ()=> ({
                     name:'npm install',
                     icon:'mdi-package-down',
                     color:'secondary',
-                    method:'npmInstall',
+                    route:'npm_install',
                 }
             ]
         },
@@ -44,7 +44,7 @@ export default ()=> ({
                     name:'Create env file and copy values from env.example',
                     icon:'mdi-file-plus',
                     color:'#3f3f3fb6',
-                    method:'copyEnvExampe',
+                    route:'copy_env_example',
                 },
                 {
                     id:2,
@@ -52,7 +52,7 @@ export default ()=> ({
                     name:'Create empty env file',
                     icon:'mdi-file-plus-outline',
                     color:'#3f3f3fb6',
-                    method:'createEnvFile',
+                    route:'create_env_file',
                 },
                 {
                     id:3,
@@ -60,7 +60,7 @@ export default ()=> ({
                     name:'Generate app key',
                     icon:'mdi-key-plus',
                     color:'primary',
-                    method:'generateAppKey',
+                    route:'app_key_generate',
                 },
                 {
                     id:4,
@@ -68,32 +68,33 @@ export default ()=> ({
                     name:'Link storage (filesystem driver must be set if not default)',
                     icon:'mdi-link-variant-plus',
                     color:'primary',
-                    method:'linkStorage',
+                    route:'app_storage_link',
                 },
                 {
                     id:5,
                     type:'button',
                     name:'Edit env file values',
                     icon:'mdi-file-download-outline',
-                    params:['areaData'],
                     color:'#3f3f3fb6',
-                    method:'fillEnvTextArea',
+                    route:'get_env_values',
+                    method:'fillEnvVars',
                 },
                 {
                     id:6,
                     type:'textarea',
                     name:'Get env file values',
                     icon:'mdi-file-download-outline',
-                    model:'areaData',
+                    model:'envVars',
                 },
                  {
                     id:7,
                     type:'button',
-                    name:'Save env vals (below text area)',
+                    name:'Save env values',
                     icon:'mdi-file-upload',
-                    params:['areaData'],
+                    sendModels:['envVars'],
                     color:'#3f3f3fb6',
-                    method:'saveEditedEnvData',
+                    route:'write_to_env_file',
+                    method:'clearEnvVars',
                 }
             ]
         },
@@ -121,8 +122,10 @@ export default ()=> ({
                             name:'Create project database and user',
                             icon:'mdi-database-plus',
                             method:'validate',
-                            params:['dbcreate','registerDb',['registerDbUserPassword']],
+                            sendModels:['registerDbUserPassword'],
+                            ref:'dbcreate',
                             color:'brown lighten-1',
+                            route:'db_create',
                             showIf:'needDbAndUser'
                         },
                         {
@@ -130,9 +133,8 @@ export default ()=> ({
                             type:'button',
                             name:'Create project database',
                             icon:'mdi-database-plus',
-                            method:'createDb',
-                            params:[],
                             color:'brown lighten-1',
+                            route:'db_create',
                             showIf:'needDb'
                         },
                         {
@@ -148,8 +150,7 @@ export default ()=> ({
                     type:'button',
                     name:'Migrate database (database must be created and database credentials saved to env file)',
                     icon:'mdi-database-import',
-                    method:'migrateDb',
-                    params:[],
+                    route:'db_migrate',
                     color:'brown lighten-1'
                 }
             ]
@@ -163,7 +164,7 @@ export default ()=> ({
                     type:'button',
                     name:'Git pull',
                     icon:'mdi-git',
-                    method:'gitPull',
+                    route:'git_pull',
                     color:'deep-orange darken-2',
                 },
                 {
@@ -176,9 +177,8 @@ export default ()=> ({
                             type:'input',
                             label:'Main index file location',
                             inputType:'text',
-                            model:'nginxRoute',
+                            model:'path',
                             validations:['required'],
-                            showIf:'needDbAndUser'
                         },
                         {
                             id:2,
@@ -191,9 +191,10 @@ export default ()=> ({
                             name:'Set index route and initiate application',
                             icon:'mdi-server-plus',
                             method:'validate',
-                            params:['nginx','initiateNginx',['nginxRoute']],
+                            sendModels:['path'],
+                            ref:'nginx',
                             color:'#3f3f3fb6',
-                            showIf:'needDbAndUser'
+                            route:'nginx_config',
                         }
     
                     ]
@@ -202,6 +203,7 @@ export default ()=> ({
                     id:3,
                     type:'form',
                     ref:'customquery',
+                    showIf:'hasDb',
                     formComponents:[
                         {
                             id:1,
@@ -216,7 +218,7 @@ export default ()=> ({
                             type:'input',
                             label:'Mysql query to run on application\'s database',
                             inputType:'text',
-                            model:'customQuery',
+                            model:'customquery',
                             validations:['required']
                         },
                         {
@@ -225,9 +227,10 @@ export default ()=> ({
                             name:'Run custom query',
                             icon:'mdi-database-edit',
                             method:'validate',
-                            params:['customquery','runCustomQuery',['customQueryUserPassword','customQuery']],
+                            sendModels:['customQueryUserPassword','customquery'],
+                            ref:'customquery',
+                            route:'db_custom_query',
                             color:'brown lighten-1',
-                            showIf:'needDbAndUser'
                         }
     
                     ]
@@ -242,7 +245,7 @@ export default ()=> ({
                             type:'input',
                             label:'Custom artisan command',
                             inputType:'text',
-                            model:'customArtisan',
+                            model:'artisanCmd',
                             validations:['required']
                         },
                         {
@@ -251,7 +254,9 @@ export default ()=> ({
                             name:'Run custom artisan command (write command without "php artisan" prefix)',
                             icon:'mdi-language-php',
                             method:'validate',
-                            params:['customartisan','runCustomArtisan',['customArtisan']],
+                            sendModels:['artisanCmd'],
+                            ref:'customartisan',
+                            route:'custom_artisan',
                             color:'primary'
                         }
     

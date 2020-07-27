@@ -3,16 +3,19 @@
             <v-form :ref="component.ref" class="controlls__form">
                 <div v-for="formComponent in component.formComponents" :key="formComponent.id">
                     <info-area
-                    :type="formComponent.type"
-                    :info="variables[formComponent.info]"
+                    v-if="formComponent.type === 'info-area' && showInfo(formComponent)"
+                        :info="formComponent.info"
+                        :user="user.name"
+                        :db="application.database"
                     ></info-area>
-                    <text-field  v-if="(formComponent.type === 'input'  && ((formComponent.showIf === undefined) ? true : variables[formComponent.showIf]))"
+                    <text-field  
+                        v-if="formComponent.type === 'input'  && showIf(formComponent.showIf)"
                         :formComponent="formComponent"
-                        :variables="variables"
                     ></text-field>
-                    <controlls-button  v-if="formComponent.type === 'button'  && ((formComponent.showIf === undefined) ? true : variables[formComponent.showIf])"
+                    <controlls-button  
+                        v-if="formComponent.type === 'button'  && showIf(formComponent.showIf)"
                         :component="formComponent"
-                        :dynamicMethodsHandler="dynamicMethodsHandler"
+                        @validate="(info)=>validate(...info)"
                     ></controlls-button>
                 </div>
             </v-form>
@@ -23,31 +26,80 @@
 import infoArea from '@/components/shell/controlls-components/Shell-controlls-infoarea.vue'
 import textField from '@/components/shell/controlls-components/Shell-controlls-textfield.vue'
 import controllsButton from '@/components/shell/controlls-components/Shell-controlls-button.vue'
+import { mapGetters } from 'vuex'
 
 export default {
     name:"shell-component-form",
-    props:['component','variables'],
+    props:['component'],
     components:{
         infoArea,
         textField,
         controllsButton,
     },
-    methods:{
-        // seperate from components-main because validate need to reach vuetify form this.$ref 
+    data(){
+        return{
+            application: {
+                database:false
+            },                            //'CREATE GET CURRENT APPLICATION GETTER IN DB'
 
-            // takes in method name and array of params in string form and calls needed method
-           dynamicMethodsHandler(method,params){
-               this[method](...params);
-           },
+        }
+    }
+    ,
+    computed:{
+        ...mapGetters({
+            user:"session/getUser",
+            models:"shell/getModels"
+        })
+    },
+    methods:{
            
           //form validation by form reference
-           validate(ref,nextMethod,paramsToNextMethod){
+           validate(ref,route,modelList){
                if(this.$refs[ref].validate()){
-                   this.$emit('validationPass',[nextMethod,paramsToNextMethod]);
+                   const payload = this.buildShellPayload(route,modelList)
+                   console.log(payload)
                 }else{
                     console.log('Invalid input'); 
                 }
            },
+           buildShellPayload(route,modelList){
+               let payload = {
+                    route,
+                    slug:this.$route.params.slug,
+               }
+               modelList.forEach(modelString => {
+                   switch (modelString) {
+                       case 'registerDbUserPassword':
+                            payload['password']=this.models[modelString]
+                           break;
+                        case 'customQueryUserPassword':
+                            payload['password']=this.models[modelString]
+                            break
+                       default:
+                            payload[modelString]=this.models[modelString]
+                           break;
+                   }
+               });
+               return payload;
+           }
+           ,
+           showInfo(formComponent){
+               if(formComponent.info === 'dbinfo' && !this.application.database){
+                   return false
+               }
+                   return true
+           },
+           showIf(showCondition){
+               if(showCondition === undefined){
+                   return true
+               }else if(showCondition === "needDbAndUser" && !this.user.has_db_user){
+                   return true
+               }else if(showCondition === "needDb" && !this.application.database && this.user.has_db_user){
+                   return true
+               }
+               return false
+           },
+            
     }
     
 }

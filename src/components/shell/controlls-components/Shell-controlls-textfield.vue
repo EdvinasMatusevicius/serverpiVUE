@@ -15,7 +15,7 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
     name:"shell-component-textfield",
-    props:['formComponent','variables'],
+    props:['formComponent'],
     // ,'rules'
     computed:{
         ...mapGetters({
