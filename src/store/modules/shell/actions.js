@@ -1,7 +1,8 @@
 import {
     MUTATE_MODEL,
     MUTATE_SHELL_OUTPUT,
-    MUTATE_SHELL_ERRORS
+    MUTATE_SHELL_ERRORS,
+    MUTATE_DATABASE,
 
 } from './mutation-types'
 import api from '@/api/api.js'
@@ -17,6 +18,9 @@ export default {
     },
     mutateErrors({commit},errorInfo){
       commit(MUTATE_SHELL_ERRORS,errorInfo);
+    },
+    mutateDatabase({commit},dbStatus){
+      commit(MUTATE_DATABASE,dbStatus);
     },
     async runShellCmd({dispatch},body){
       console.log(body);
@@ -47,6 +51,19 @@ export default {
         (errors) => {
           console.error(errors);
         }
+      )
+    },
+    async getApplicationDatabase({commit,dispatch},slug){
+      await api.getApplicationDatabase({
+              slug
+          },
+          (dbStatus)=>{
+              console.log(dbStatus)
+              dispatch('mutateDatabase',dbStatus);
+          },
+          (err)=>{
+              console.log(err)
+          }
       )
     },
     fillEnvVars({dispatch},response){

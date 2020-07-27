@@ -6,7 +6,7 @@
                     v-if="formComponent.type === 'info-area' && showInfo(formComponent)"
                         :info="formComponent.info"
                         :user="user.name"
-                        :db="application.database"
+                        :db="database"
                     ></info-area>
                     <text-field  
                         v-if="formComponent.type === 'input'  && showIf(formComponent.showIf)"
@@ -26,7 +26,7 @@
 import infoArea from '@/components/shell/controlls-components/Shell-controlls-infoarea.vue'
 import textField from '@/components/shell/controlls-components/Shell-controlls-textfield.vue'
 import controllsButton from '@/components/shell/controlls-components/Shell-controlls-button.vue'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
     name:"shell-component-form",
@@ -36,28 +36,23 @@ export default {
         textField,
         controllsButton,
     },
-    data(){
-        return{
-            application: {
-                database:false
-            },                            //'CREATE GET CURRENT APPLICATION GETTER IN DB'
-
-        }
-    }
-    ,
     computed:{
         ...mapGetters({
             user:"session/getUser",
-            models:"shell/getModels"
+            models:"shell/getModels",
+            database:"shell/getDatabase"
         })
     },
     methods:{
-           
+           ...mapActions({
+                runShellCmd:"shell/runShellCmd",
+           }),
+
           //form validation by form reference
            validate(ref,route,modelList){
                if(this.$refs[ref].validate()){
                    const payload = this.buildShellPayload(route,modelList)
-                   console.log(payload)
+                   this.runShellCmd(payload)
                 }else{
                     console.log('Invalid input'); 
                 }
@@ -84,7 +79,7 @@ export default {
            }
            ,
            showInfo(formComponent){
-               if(formComponent.info === 'dbinfo' && !this.application.database){
+               if(formComponent.info === 'dbinfo' && !this.database){
                    return false
                }
                    return true
@@ -94,7 +89,7 @@ export default {
                    return true
                }else if(showCondition === "needDbAndUser" && !this.user.has_db_user){
                    return true
-               }else if(showCondition === "needDb" && !this.application.database && this.user.has_db_user){
+               }else if(showCondition === "needDb" && !this.database && this.user.has_db_user){
                    return true
                }
                return false

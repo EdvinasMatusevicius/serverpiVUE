@@ -113,7 +113,20 @@ export default {
       }
       failure(errorsMessages);
     }
-  }
+  },
+  getApplicationDatabase: async (body, success, failure) => {
+    try {
+      const response = await api().get(API_URL + body.slug + '/database');
+      success(response.data.data.database);
+    } catch (context) {
+      let errorsMessages = [];
+      const { errors } = context.response.data;
+      for (const errorName in errors) {
+        errorsMessages = [...errorsMessages, ...errors[errorName]];
+      }
+      failure(errorsMessages);
+    }
+  },
 }
 //--------------------------------------------------------------------------------------------AXIOS HEADER CONFIGURATION
 function createApiInstance() {

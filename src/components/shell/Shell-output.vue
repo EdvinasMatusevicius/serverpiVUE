@@ -18,9 +18,11 @@ export default {
         })
     },
     mounted(){
+        this.getShell();
         if(this.reqStatus){
             this.getShellLoop()
         }
+
     },
     watch:{
         reqStatus:function(newVal){
@@ -65,6 +67,7 @@ export default {
             padding: 0.5rem;
             font-size: 0.9rem;
             white-space: pre-wrap;
+            overflow-y: auto;
 
 
             &-name{
@@ -81,6 +84,7 @@ export default {
             color: #ffffff;
             padding: 0.5rem;
             font-size: 0.9rem;
+            overflow-y: auto;
 
             &-name{
                 grid-area: errorName;

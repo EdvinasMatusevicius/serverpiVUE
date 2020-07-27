@@ -21,16 +21,24 @@
 
 <script>
 import ShellComponent from '@/components/shell/Shell-controlls-components-main.vue'
-import {mapGetters} from 'vuex';
+import {mapGetters, mapActions} from 'vuex';
 export default {
     name:"shell-controlls",
     components:{
         ShellComponent
     },
+    created(){
+        this.getApplicationDb(this.$route.params.slug)
+    },
     computed:{
         ...mapGetters({
             controlls:"shell/getControlls",
             models:"shell/getModels"
+        })
+    },
+    methods:{
+        ...mapActions({
+            getApplicationDb:"shell/getApplicationDatabase"
         })
     }
 }
@@ -48,8 +56,9 @@ export default {
             width: 100%;
         }
         &__form{
-            border:5px #eeeeee;
-            border-style: groove;
+            border:5px #e7e7e7;
+            margin: 0.2rem 0;
+            border-style: solid;
         }
     }
 </style>

@@ -1,7 +1,8 @@
 import {
     MUTATE_MODEL,
     MUTATE_SHELL_OUTPUT,
-    MUTATE_SHELL_ERRORS
+    MUTATE_SHELL_ERRORS,
+    MUTATE_DATABASE
 } from './mutation-types'
 
 export default {
@@ -13,5 +14,8 @@ export default {
     },
     [MUTATE_SHELL_ERRORS]({shell},errorInfo){
         shell.errors = errorInfo
+    },
+    [MUTATE_DATABASE](state,dbStatus){
+        state.database = dbStatus
     },
   }

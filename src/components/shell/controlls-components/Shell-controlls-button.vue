@@ -2,26 +2,26 @@
       <div v-if="component.type === 'button'" class="controlls__btn d-inline-flex justify-center">
         <div class="align-self-center">{{component.name}}</div>
         <v-spacer></v-spacer>
-        <v-btn @click="clickHandler()" outlined fab :color="component.color" class="align-self-center">
+        <v-btn @click="clickHandler()" outlined fab :color="component.color" :disabled="reqStatus" class="align-self-center">
             <v-icon>{{component.icon}}</v-icon>
         </v-btn>
     </div>
 </template>
 
 <script>
-//@click="dynamicMethodsHandler(component.method,component.params ? component.params : null)"
 import { mapActions, mapGetters } from 'vuex'
 export default {
     name:'shell-controlls-button',
     props:['component'],
     computed:{
         ...mapGetters({
-            models:"shell/getModels"
+            models:"shell/getModels",
+            reqStatus:"session/getReqStatus"
         })
     },
     methods:{
         ...mapActions({
-            runShellCmd:"shell/runShellCmd"
+            runShellCmd:"shell/runShellCmd",
         }),
         clickHandler(){
             if(this.component.method === "validate"){
