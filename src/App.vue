@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import navBar from './partials/Navbar.vue'
-import backgroundBrackets from './partials/Background-brackets'
+import navBar from '@/partials/Navbar.vue'
+import backgroundBrackets from '@/partials/Background-brackets'
 import axios from 'axios';
 import { mapActions } from 'vuex';
 
