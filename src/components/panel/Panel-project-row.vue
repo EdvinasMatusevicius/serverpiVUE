@@ -3,7 +3,7 @@
         
         <v-icon v-if="project.language == '1'" color="primary" class="row__language">mdi-language-php</v-icon>
         <v-icon v-if="project.language == '2'" color="secondary" class="row__language">mdi-vuejs</v-icon>
-        <v-icon v-if="project.language == '3'" color="primary" class="row__language">mdi-language-html5</v-icon>
+        <v-icon v-if="project.language == '3'" color="error" class="row__language">mdi-language-html5</v-icon>
         <div class="d-flex justify-center row__name">
             {{project.applicationName}}
         </div>
