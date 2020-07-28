@@ -54,7 +54,7 @@ export default ()=> ({
             label:'Application\'s language',
             items:[
                 {
-                    text: 'PHP website (php, laravel)',
+                    text: 'PHP 7.3 website (php, laravel)',
                     value: 1,
                 },
                 {
