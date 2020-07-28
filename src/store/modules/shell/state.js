@@ -13,8 +13,8 @@ export default ()=> ({
         customquery:'',
         artisanCmd:'',
     },
-    controlls:[
-        {
+    controlls:{
+        php:[{
             id:1,
             groupName:'Package installation',
             components:[
@@ -35,8 +35,8 @@ export default ()=> ({
                     route:'npm_install',
                 }
             ]
-        },
-        {
+            },
+            {
             id:2,
             groupName:'Env configuration',
             components:[
@@ -99,8 +99,8 @@ export default ()=> ({
                     method:'clearEnvVars',
                 }
             ]
-        },
-        {
+            },
+            {
             id:3,
             groupName:'Database configuration',
             components:[
@@ -156,8 +156,8 @@ export default ()=> ({
                     color:'brown lighten-1'
                 }
             ]
-        },
-        {
+            },
+            {
             id:4,
             groupName:'Application configuration/initiation and custom commands',
             components:[
@@ -265,7 +265,97 @@ export default ()=> ({
                     ]
                 },
             ]
-        },
-    ]
+            },
+        ],
+//------------------------------------------------------------STATIC AND VUE SHELL CONTROLLS
 
+        static:[
+            {
+            id:2,
+            groupName:'Env configuration',
+            components:[
+                {
+                    id:2,
+                    type:'button',
+                    name:'Create empty env file',
+                    icon:'mdi-file-plus-outline',
+                    color:'#3f3f3fb6',
+                    route:'create_env_file',
+                },
+                {
+                    id:5,
+                    type:'button',
+                    name:'Edit env file values',
+                    icon:'mdi-file-download-outline',
+                    color:'#3f3f3fb6',
+                    route:'get_env_values',
+                    method:'fillEnvVars',
+                },
+                {
+                    id:6,
+                    type:'textarea',
+                    name:'Get env file values',
+                    icon:'mdi-file-download-outline',
+                    model:'envVars',
+                },
+                 {
+                    id:7,
+                    type:'button',
+                    name:'Save env values',
+                    icon:'mdi-file-upload',
+                    sendModels:['envVars'],
+                    color:'#3f3f3fb6',
+                    route:'write_to_env_file',
+                    method:'clearEnvVars',
+                }
+                ]
+            },
+            {
+            id:4,
+            groupName:'Application configuration/initiation and custom commands',
+            components:[
+                {
+                    id:1,
+                    type:'button',
+                    name:'Git pull',
+                    icon:'mdi-git',
+                    route:'git_pull',
+                    color:'deep-orange darken-2',
+                },
+                {
+                    id:2,
+                    type:'form',
+                    ref:'nginx',
+                    formComponents:[
+                        {
+                            id:1,
+                            type:'input',
+                            label:'Main index file location',
+                            inputType:'text',
+                            model:'path',
+                            validations:['required'],
+                        },
+                        {
+                            id:2,
+                            type:'info-area',
+                            info:'nginxRouteInfo'
+                        },
+                        {
+                            id:3,
+                            type:'button',
+                            name:'Set index route and initiate application',
+                            icon:'mdi-server-plus',
+                            method:'validate',
+                            sendModels:['path'],
+                            ref:'nginx',
+                            color:'#3f3f3fb6',
+                            route:'nginx_config',
+                        }
+    
+                    ]
+                }
+            ]
+            },
+        ]
+}
 })

@@ -54,15 +54,15 @@ export default ()=> ({
             label:'Application\'s language',
             items:[
                 {
-                    text: 'PHP website (php , laravel)',
+                    text: 'PHP website (php, laravel)',
                     value: 1,
                 },
                 {
-                    text: 'NodeJs',
+                    text: 'Vue (built app from dist with route history on)',
                     value: 2,
                 },
                 {
-                    text: 'Static website (html css js)',
+                    text: 'Static website (html css js, built vue with route history off)',
                     value: 3,
                 },
             ],

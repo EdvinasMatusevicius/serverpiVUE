@@ -1,6 +1,6 @@
 <template>
           <v-expansion-panels class="controlls" focusable>
-           <v-expansion-panel  v-for="group of controlls" v-bind:key="group.id" class="controlls__panel" >
+           <v-expansion-panel  v-for="group of controlls[language]" v-bind:key="group.id" class="controlls__panel" >
              <v-expansion-panel-header>{{group.groupName}} </v-expansion-panel-header>
              <v-expansion-panel-content>
 <br>
@@ -27,6 +27,11 @@ export default {
     components:{
         ShellComponent
     },
+    data(){
+        return{
+            language:this.appLanguage(),
+        }
+    },
     created(){
         this.getApplicationDb(this.$route.params.slug)
     },
@@ -38,8 +43,11 @@ export default {
     },
     methods:{
         ...mapActions({
-            getApplicationDb:"shell/getApplicationDatabase"
-        })
+            getApplicationDb:"shell/getApplicationDatabase",
+        }),
+        appLanguage(){
+            return this.$route.params.language === '1' ? 'php' : 'static'
+        }
     }
 }
 </script>
