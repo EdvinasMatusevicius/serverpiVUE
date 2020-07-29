@@ -67,6 +67,7 @@ export default {
                 }
                 &__controls{
                     justify-content: center;
+                    flex-wrap: wrap;
                 }
           }
       }
