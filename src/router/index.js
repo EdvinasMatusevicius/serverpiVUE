@@ -3,9 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import store from '../store'
 
-// (()=>{
-//   console.log(store.getters['session/getIsLogedIn'])
-// })()
+
 Vue.use(VueRouter)
 
 const ifNotAuthenticated = (to, from, next) => {
@@ -76,8 +74,8 @@ const ifAuthenticated = (to, from, next) => {
   },
   {
     path: '/*',
-    name: 'About',
-    component: () => import('../views/About.vue')  //create 404 PAGE
+    name: '404',
+    component: () => import('../views/Bad-request.vue')
 
   },
 ]

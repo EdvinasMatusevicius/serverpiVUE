@@ -23,7 +23,6 @@ export default {
       commit(MUTATE_DATABASE,dbStatus);
     },
     async runShellCmd({dispatch},body){
-      console.log(body);
       dispatch('session/mutateReqStatus', true,{root:true});
 
       await api.runShellCmd({

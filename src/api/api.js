@@ -3,8 +3,7 @@ import store from '../store'
 import router from '../router/index'
 
 
-const API_URL = 'http://serverpi.ddns.me/api/';
-const api = () => createApiInstance();
+const API_URL = 'http://api.serverpi.ddns.me/api/';
 
 export default {
   //--------------------------------------------------------------USER AUTH AND SESSION
@@ -39,7 +38,6 @@ export default {
   register: async (body, success, failure) => {
     try {
       const response = await api().post(API_URL + 'auth/register', body);
-      console.log(response,'sitas api vidui')
       success(response.data.data);
     } catch (context) {
       let errorsMessages = [];
@@ -69,7 +67,6 @@ export default {
   runShellCmd: async(body,success,failure)=>{
     try {
       const response = await api().post(API_URL + body.slug+'/shell/'+body.route,body);
-      console.log(response,'api command execution success')
       success(response.data);
     } catch (error) {
       failure(error);
@@ -80,7 +77,6 @@ export default {
   getShell: async(success,failure)=>{
     try {
       const response = await api().get(API_URL + 'shell-values');
-      console.log(response,'api shell values get')
       success(response.data.data);
     } catch (error) {
       failure(error);
@@ -129,7 +125,7 @@ export default {
   },
 }
 //--------------------------------------------------------------------------------------------AXIOS HEADER CONFIGURATION
-function createApiInstance() {
+function api() {
     
     if (localStorage.getItem('authToken')) {
         const authToken = JSON.parse(localStorage.getItem('authToken'));

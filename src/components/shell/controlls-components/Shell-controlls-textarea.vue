@@ -26,7 +26,6 @@ export default {
     },
     watch:{//to do nested dynamic watcher
         'models.envVars': function(newVal,oldval){
-            console.log('models watch trigered')
             this.areaData = this.models[this.model];
         },
         areaData:function(newVal){

@@ -60,4 +60,12 @@ export default {
   max-height: 100%;
   opacity: 0.85;
 }
+    @media (max-width: 600px) {
+      .description{
+        font-size: 1.3rem;
+      }
+      .about__li p{
+        font-size: 1rem;
+      }
+    }
 </style>
