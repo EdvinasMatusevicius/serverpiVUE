@@ -68,6 +68,9 @@ export default {
                         case 'length':
                             rulesArr.push(this.length(validation.min,validation.max,this.inputInfo.name));
                         break;
+                        case 'lengthIfPresent':
+                            rulesArr.push(this.lengthIfPresent(validation.min,validation.max,this.inputInfo.name));
+                        break;
                         case 'email':
                             rulesArr.push(this.email())
                         break;
@@ -96,6 +99,9 @@ export default {
         length(min,max,name){
             return v =>  (v.length > min && v.length < max)  || `${name} can't be shorter than ${min} and longer than ${max} characters`;
         },
+        lengthIfPresent(min,max,name){
+            return v => !v || (v.length > min && v.length < max)  || `${name} can't be shorter than ${min} and longer than ${max} characters`;
+        },
         name(){
             return v => /^[a-zA-Z0-9]+$/.test(v) || 'Name can only contain aphabetic characters and numbers';
         },
@@ -103,7 +109,7 @@ export default {
             return v => /(?! )^([a-zA-Z0-9 ])+(?<! )$/.test(v) || 'Application name can only contain aphabetic characters, numbers and spaces';
         },
         applicationSlug(){
-            return v => /(?!-)^([a-z0-9-])+(?<!-)$/.test(v) || 'Application slug can only contain lower case aphabetic characters, numbers and dashes';
+            return v => !v || /(?!-)^([a-z0-9-])+(?<!-)$/.test(v) || 'Application slug can only contain lower case aphabetic characters, numbers and dashes';
         }
 
     }

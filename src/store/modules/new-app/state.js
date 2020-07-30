@@ -31,7 +31,7 @@ export default ()=> ({
                 {
                     validation:'applicationSlug'
                 },{
-                    validation:'length',
+                    validation:'lengthIfPresent',
                     min:3,
                     max:255
                 }
