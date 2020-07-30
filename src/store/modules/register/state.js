@@ -5,6 +5,7 @@ export default ()=> ({
         password: '',
         repeatpassword: '',
     },
+    errors:[],
     register:{
         username:{
             inputModel:'username',
@@ -13,6 +14,8 @@ export default ()=> ({
             validations:[
             {
                 validation:'required'
+            },{
+                validation:'name'
             },{
                 validation:'length',
                 min:2,

@@ -12,6 +12,7 @@ export default {
       const response = await api().post(API_URL + 'auth/login', body);
       success(response.data.data.token);
     } catch (context) {
+      console.log(context)
       let errorsMessages = [];
       const { errors } = context.response.data;
       for (const errorName in errors) {

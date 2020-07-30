@@ -1,5 +1,6 @@
 import {
-    MUTATE_MODEL
+    MUTATE_MODEL,
+    MUTATE_ERRORS
 } from './mutation-types'
 import api from '@/api/api.js'
 import router from '@/router/index'
@@ -9,7 +10,9 @@ export default {
     mutateModel({commit},modelInfo){
       commit(MUTATE_MODEL,modelInfo);
     },
-
+    mutateErrors({commit},errors){
+      commit(MUTATE_ERRORS,errors)
+    },
    async addProject({commit,dispatch},modelInfo){
       router.push('shell-solo');
       dispatch('session/mutateReqStatus', true,{root:true});
@@ -24,10 +27,11 @@ export default {
           dispatch('session/mutateReqStatus', false,{root:true});
           router.push('panel');
         },
-        (err)=>{
+        (errors)=>{
           router.push('new-app');
           dispatch('session/mutateReqStatus', false,{root:true});
-          console.log(err)
+          dispatch('mutateErrors',errors)
+          console.log(errors)
         }
         )
     }

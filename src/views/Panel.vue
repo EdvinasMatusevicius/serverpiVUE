@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="panel__wrap">
         <route-name></route-name>
         <div class="panel__grid">
               <div class="d-flex flex-column">
@@ -62,10 +62,10 @@ export default {
     }
     @media (max-width: 600px) {
         .panel{
+        &__wrap{
+            overflow: hidden;
+        }
             &__grid{
-                // width: 90vw;
-                margin:0 auto;
-                // padding-top: 2rem;
                 display: grid;
                 grid-template-rows: auto auto;
                 grid-template-columns: auto;

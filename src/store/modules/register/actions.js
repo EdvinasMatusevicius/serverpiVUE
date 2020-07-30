@@ -1,5 +1,6 @@
 import {
-    MUTATE_MODEL
+    MUTATE_MODEL,
+    MUTATE_ERRORS
 } from './mutation-types'
 import api from '@/api/api.js'
 
@@ -7,6 +8,9 @@ import api from '@/api/api.js'
 export default {
     mutateModel({commit},modelInfo){
       commit(MUTATE_MODEL,modelInfo);
+    },
+    mutateErrors({commit},errors){
+      commit(MUTATE_ERRORS,errors)
     },
     async register({ dispatch }, payload) {
       await api.register(
@@ -22,6 +26,7 @@ export default {
         },
         (errors) => {
           console.log(errors);
+          dispatch('mutateErrors',errors)
         }
       )
     },

@@ -5,6 +5,7 @@ export default ()=> ({
         giturl: '',
         language: '',
     },
+    errors:[],
     newApp:{
         applicationName:{
         inputModel:'applicationName',
@@ -13,6 +14,8 @@ export default ()=> ({
         validations:[
         {
             validation:'required'
+        },{
+            validation:'applicationName'
         },{
             validation:'length',
             min:3,
@@ -26,7 +29,7 @@ export default ()=> ({
             label:'Application\'s slug that will be used in url, if left empty will be auto generated',
             validations:[
                 {
-                    validation:'required'
+                    validation:'applicationSlug'
                 },{
                     validation:'length',
                     min:3,

@@ -10,6 +10,7 @@
             >
           </vue-input>
           <v-btn @click="validate" class="btn btn-primary" v-text="type"></v-btn>
+          <p v-for="(error,i) in this[this.type+'Errors']" :key="i">{{error}}</p>
         </v-form>
     </div>
 </template>
@@ -25,7 +26,7 @@ export default {
     },
     data(){
         return {
-            inputs:''
+            inputs:'',
         }
     },
     created(){
@@ -39,7 +40,10 @@ export default {
             loginModels:"login/getModels",
             registerModels:"register/getModels",
             newAppModels:"newApp/getModels",
-            isLogedIn:"session/getIsLogedIn"
+            isLogedIn:"session/getIsLogedIn",
+            registerErrors:"register/getErrors",
+            loginErrors:"login/getErrors",
+            newAppErrors:"newApp/getErrors",
         })
     },
     methods:{

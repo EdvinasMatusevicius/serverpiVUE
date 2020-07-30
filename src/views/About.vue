@@ -48,6 +48,7 @@ export default {
   }
   &__li img{
     width: 20%;
+    margin-right: 1rem;
   }
     &__li p{
     font-size: 1.5rem;

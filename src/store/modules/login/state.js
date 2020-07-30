@@ -3,7 +3,7 @@ export default ()=> ({
         email: '',
         password: '',
     },
-
+    errors:[],
     login:{
         email:{
             inputModel:'email',

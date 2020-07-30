@@ -71,7 +71,15 @@ export default {
                         case 'email':
                             rulesArr.push(this.email())
                         break;
-                
+                        case 'name':
+                            rulesArr.push(this.name())
+                        break;
+                        case 'applicationName':
+                            rulesArr.push(this.applicationName())
+                        break;
+                        case 'applicationSlug':
+                            rulesArr.push(this.applicationSlug())
+                        break;
                     default:
                         break;
                 }
@@ -87,7 +95,16 @@ export default {
         },
         length(min,max,name){
             return v =>  (v.length > min && v.length < max)  || `${name} can't be shorter than ${min} and longer than ${max} characters`;
-            }
+        },
+        name(){
+            return v => /^[a-zA-Z0-9]+$/.test(v) || 'Name can only contain aphabetic characters and numbers';
+        },
+        applicationName(){
+            return v => /(?! )^([a-zA-Z0-9 ])+(?<! )$/.test(v) || 'Application name can only contain aphabetic characters, numbers and spaces';
+        },
+        applicationSlug(){
+            return v => /(?!-)^([a-z0-9-])+(?<!-)$/.test(v) || 'Application slug can only contain lower case aphabetic characters, numbers and dashes';
+        }
 
     }
     

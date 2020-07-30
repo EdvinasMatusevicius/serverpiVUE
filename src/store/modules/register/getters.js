@@ -1,4 +1,5 @@
 export default {
     getForm:({register})=>register,
-    getModels:({models})=>models
+    getModels:({models})=>models,
+    getErrors:({errors})=>errors
   }
