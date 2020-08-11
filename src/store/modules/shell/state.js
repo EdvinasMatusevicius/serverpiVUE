@@ -127,7 +127,7 @@ export default ()=> ({
                             sendModels:['registerDbUserPassword'],
                             ref:'dbcreate',
                             color:'brown lighten-1',
-                            route:'db_create',
+                            route:'db_and_user_create',
                             showIf:'needDbAndUser'
                         },
                         {

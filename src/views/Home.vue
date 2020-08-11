@@ -27,7 +27,27 @@ export default {
 
   data(){
     return{
-      projects:[{
+      projects:[
+               {
+          id:4,
+          avatar: require("@/assets/profile.png"),
+          username: 'John ed',
+          projectImg: require("@/assets/placeholder4.png"),
+          projectName: 'Basic Chat',
+          projectDescription: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id culpa optio animi soluta, saepe numquam ut dolore eveniet deserunt minima consectetur, ad repellat. Repudiandae omnis, corporis rem accusantium saepe at",
+          projectLink:'https://www.reddit.com',
+          gihub:'https://github.com/EdvinasMatusevicius/serverpi'
+        },
+        {
+          id:5,
+          avatar: require("@/assets/profile.png"),
+          username: 'John ed',
+          projectImg: require("@/assets/placeholder5.png"),
+          projectName: 'Darbo baze',
+          projectDescription: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id culpa optio animi soluta, saepe numquam ut dolore eveniet deserunt minima consectetur, ad repellat. Repudiandae omnis, corporis rem accusantium saepe at",
+          projectLink:'https://www.reddit.com',
+          gihub:'https://github.com/EdvinasMatusevicius/serverpi'
+        },{
           id:1,
           avatar: require("@/assets/profile.png"),
           username: 'John ',
@@ -57,26 +77,7 @@ export default {
           projectLink:'https://www.reddit.com',
           gihub:'https://github.com/EdvinasMatusevicius/serverpi'
         },
-        {
-          id:4,
-          avatar: require("@/assets/profile.png"),
-          username: 'John ed',
-          projectImg: require("@/assets/placeholder4.png"),
-          projectName: 'Basic Chat',
-          projectDescription: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id culpa optio animi soluta, saepe numquam ut dolore eveniet deserunt minima consectetur, ad repellat. Repudiandae omnis, corporis rem accusantium saepe at",
-          projectLink:'https://www.reddit.com',
-          gihub:'https://github.com/EdvinasMatusevicius/serverpi'
-        },
-        {
-          id:5,
-          avatar: require("@/assets/profile.png"),
-          username: 'John ed',
-          projectImg: require("@/assets/placeholder5.png"),
-          projectName: 'Darbo baze',
-          projectDescription: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id culpa optio animi soluta, saepe numquam ut dolore eveniet deserunt minima consectetur, ad repellat. Repudiandae omnis, corporis rem accusantium saepe at",
-          projectLink:'https://www.reddit.com',
-          gihub:'https://github.com/EdvinasMatusevicius/serverpi'
-        }
+ 
       ]
     }
   }
