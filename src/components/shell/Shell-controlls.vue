@@ -33,7 +33,7 @@ export default {
         }
     },
     created(){
-        this.getApplicationDb(this.$route.params.slug)
+        this.getApplicationDb({slug:this.$route.params.slug})
     },
     computed:{
         ...mapGetters({

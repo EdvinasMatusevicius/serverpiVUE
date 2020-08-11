@@ -137,6 +137,7 @@ export default ()=> ({
                             icon:'mdi-database-plus',
                             color:'brown lighten-1',
                             route:'db_create',
+                            method:'getApplicationDatabase',
                             showIf:'needDb'
                         },
                         {

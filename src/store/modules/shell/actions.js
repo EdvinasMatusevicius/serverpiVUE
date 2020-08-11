@@ -52,7 +52,7 @@ export default {
         }
       )
     },
-    async getApplicationDatabase({commit,dispatch},slug){
+    async getApplicationDatabase({commit,dispatch},{slug}){
       await api.getApplicationDatabase({
               slug
           },
@@ -68,7 +68,7 @@ export default {
     fillEnvVars({dispatch},response){
       const modelInfo = {
         model:'envVars',
-        value: response.data.values
+        value: response.values
       };
       dispatch('mutateModel',modelInfo)
     },

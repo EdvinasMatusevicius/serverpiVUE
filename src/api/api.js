@@ -68,7 +68,7 @@ export default {
   runShellCmd: async(body,success,failure)=>{
     try {
       const response = await api().post(API_URL + body.slug+'/shell/'+body.route,body);
-      success(response.data);
+      success(response.data.data);
     } catch (error) {
       failure(error);
     }
