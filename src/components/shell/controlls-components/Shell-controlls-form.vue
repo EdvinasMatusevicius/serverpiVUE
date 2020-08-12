@@ -49,17 +49,18 @@ export default {
            }),
 
           //form validation by form reference
-           validate(ref,route,modelList){
+           validate(ref,route,modelList,method){
                if(this.$refs[ref].validate()){
-                   const payload = this.buildShellPayload(route,modelList)
+                   const payload = this.buildShellPayload(route,modelList,method)
                    this.runShellCmd(payload)
                 }else{
                     console.log('Invalid input'); 
                 }
            },
-           buildShellPayload(route,modelList){
+           buildShellPayload(route,modelList,method){
                let payload = {
                     route,
+                    method,
                     slug:this.$route.params.slug,
                }
                modelList.forEach(modelString => {

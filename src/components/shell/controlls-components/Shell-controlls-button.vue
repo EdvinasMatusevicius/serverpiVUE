@@ -24,8 +24,8 @@ export default {
             runShellCmd:"shell/runShellCmd",
         }),
         clickHandler(){
-            if(this.component.method === "validate"){
-                return this.$emit('validate', [this.component.ref, this.component.route, this.component.sendModels])
+            if(this.component.validation){
+                return this.$emit('validate', [this.component.ref, this.component.route, this.component.sendModels,this.component.method])
             }
             this.runShellCmd( this.buildRunShellParams())
         },

@@ -52,6 +52,11 @@ export default {
         }
       )
     },
+    async getDbStatus({dispatch},payload){
+      dispatch('getApplicationDatabase',payload);
+      dispatch('session/getUserData',null,{root:true});
+    },
+
     async getApplicationDatabase({commit,dispatch},{slug}){
       await api.getApplicationDatabase({
               slug
