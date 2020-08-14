@@ -49,6 +49,13 @@ export default {
       failure(errorsMessages);
     }
   },
+  deleteAcc: async () => {
+    try {
+      await api().delete(API_URL + 'user/delete');
+    } catch (err) {
+      console.log(err);
+    }
+  },
 //---------------------------------------------------------------------------- NEW APPLICATION POST
 
   addProject: async(body,success,failure)=>{

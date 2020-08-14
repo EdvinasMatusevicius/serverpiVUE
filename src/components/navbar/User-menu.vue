@@ -25,6 +25,11 @@
               >
                 <v-list-item-title class="list-btn"> <v-icon>mdi-logout</v-icon><span class="list-name">Logout</span></v-list-item-title>
               </v-list-item>
+              <v-list-item
+                @click="deleteAccount()"
+              >
+                <v-list-item-title>DELETE ACCOUNT</v-list-item-title>
+              </v-list-item>
             </v-list>
         </v-menu>
 </template>
@@ -36,7 +41,8 @@ export default {
     props:['email'],
     methods:{
         ...mapActions({
-            logoutAction:"login/logout"
+            logoutAction:"login/logout",
+            deleteAccount:"account/delete"
         }),
         logout(){
             this.logoutAction().then(()=>{
