@@ -268,6 +268,30 @@ export default ()=> ({
                 },
             ]
             },
+            {
+                id:4,
+                groupName:'Application settings',
+                components:[
+                    {
+                        id:1,
+                        type:'overlay',
+                        name:'Delete application',
+                        icon:'mdi-delete',
+                        color:'red darken-4',
+                        message:'Are you sure you want to delete this app?',
+                        overlayComponents:[
+                            {
+                                id:1,
+                                type:'button',
+                                name:'Delete',
+                                icon:'mdi-delete',
+                                route:'git_pull', //gali pasikeist nes nesukurtas route
+                                color:'red darken-4',
+                            },
+                        ]
+                    }
+                ]
+            }
         ],
 //------------------------------------------------------------STATIC AND VUE SHELL CONTROLLS
 

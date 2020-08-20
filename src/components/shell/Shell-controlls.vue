@@ -3,7 +3,7 @@
            <v-expansion-panel  v-for="group of controlls[language]" v-bind:key="group.id" class="controlls__panel" >
              <v-expansion-panel-header>{{group.groupName}} </v-expansion-panel-header>
              <v-expansion-panel-content>
-<br>
+            <br>
                  <div v-for="component of group.components" :key="component.id" >
                      
                     <shell-component

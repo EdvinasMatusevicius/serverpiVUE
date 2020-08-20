@@ -67,6 +67,12 @@ const ifAuthenticated = (to, from, next) => {
     beforeEnter: ifAuthenticated,
   },
   {
+    path: '/account',
+    name: 'account settings',
+    component: () => import('../views/AccountSettings.vue'),
+    beforeEnter: ifAuthenticated,
+  },
+  {
     path: '/new-app',
     name: 'New application form',
     component: () => import('../views/New-app.vue'),

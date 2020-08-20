@@ -1,5 +1,5 @@
 export default ()=> ({
-    projects:'',
+    projects:[],
     navigations:[
         {
           id:1,

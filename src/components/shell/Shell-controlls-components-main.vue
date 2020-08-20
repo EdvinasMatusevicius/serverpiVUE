@@ -16,7 +16,11 @@
             v-if="component.type === 'form'"
             :component="component"
         ></controlls-form>
-       
+       <overlay
+            v-if="component.type === 'overlay'"
+            :component="component"
+       >
+       </overlay>
     </div>
 </template>
 
@@ -26,6 +30,7 @@ import infoArea from '@/components/shell/controlls-components/Shell-controlls-in
 import textField from '@/components/shell/controlls-components/Shell-controlls-textfield.vue';
 import controllsButton from '@/components/shell/controlls-components/Shell-controlls-button.vue';
 import controllsForm from '@/components/shell/controlls-components/Shell-controlls-form.vue';
+import overlay from '@/components/shell/controlls-components/Shell-controlls-overlay.vue'
 export default {
     name:'shell-controll-components',
     props:['component','model'],
@@ -34,7 +39,8 @@ export default {
         infoArea,
         textField,
         controllsButton,
-        controllsForm
+        controllsForm,
+        overlay
     },
 
     

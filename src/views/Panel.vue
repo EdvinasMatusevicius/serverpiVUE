@@ -8,11 +8,14 @@
                 :navigation="navigation"
                 ></panel-navigation>
               </div>
-              <div class="panel__project-list">
+              <div class="panel__project-list" v-if="projects.length > 0" >
                   <panel-project-row
-                  v-for="project of projects" :key="project.applicationName"
-                  :project="project"
+                    v-for="project of projects" :key="project.applicationName"
+                    :project="project"
                   ></panel-project-row>
+              </div>
+              <div class="panel__list-empty" v-else>
+                  <span>Your project list is empty</span><div></div>
               </div>
         </div>
     </div>
@@ -59,17 +62,28 @@ export default {
             grid-template-columns: 1fr 4fr;
             column-gap: 2rem;
         }
+        &__list-empty{
+            display:flex;
+            justify-content: space-evenly;
+            align-items: center;
+            font-size: 1.2rem;
+            color: #5a5a5a;
+
+        }
     }
     @media (max-width: 600px) {
         .panel{
-        &__wrap{
-            overflow: hidden;
-        }
+            &__wrap{
+                overflow: hidden;
+            }
             &__grid{
                 display: grid;
                 grid-template-rows: auto auto;
                 grid-template-columns: auto;
                 column-gap: 2rem;
+            }
+            &__list-empty{
+                justify-content:center;
             }
         }
     }

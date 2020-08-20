@@ -20,15 +20,18 @@
               <v-list-item>
                 <v-list-item-title> <v-icon>mdi-account</v-icon><span class="list-name">{{email}}</span></v-list-item-title>
               </v-list-item>
+
+              <v-list-item
+                to="/account"
+                class="text-decoration-none"
+              >
+                <v-list-item-title class="list-btn "> <v-icon>mdi-account-cog</v-icon><span class="list-name">Account settings</span></v-list-item-title>
+              </v-list-item>
+
               <v-list-item 
                 @click="logout()"
               >
                 <v-list-item-title class="list-btn"> <v-icon>mdi-logout</v-icon><span class="list-name">Logout</span></v-list-item-title>
-              </v-list-item>
-              <v-list-item
-                @click="deleteAccount()"
-              >
-                <v-list-item-title>DELETE ACCOUNT</v-list-item-title>
               </v-list-item>
             </v-list>
         </v-menu>
