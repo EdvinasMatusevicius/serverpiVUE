@@ -11,7 +11,8 @@ const ifNotAuthenticated = (to, from, next) => {
     next()
     return
   }
-  next('/')
+  // next('/')
+  router.push({name:'Home'})
 }
 
 const ifAuthenticated = (to, from, next) => {
@@ -19,7 +20,9 @@ const ifAuthenticated = (to, from, next) => {
     next()
     return
   }
-  next('/login')
+  // next('/login')
+  router.push({name:'Login'})
+
 }
 
   const routes = [
