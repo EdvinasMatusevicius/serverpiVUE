@@ -3,7 +3,7 @@
     <div v-if="component.type === 'overlay'" class="controlls__btn d-inline-flex justify-center">
         <div class="align-self-center">{{component.name}}</div>
         <v-spacer></v-spacer>
-        <v-btn @click="showOverlay()" outlined fab :color="component.color" :disabled="reqStatus" class="align-self-center">
+        <v-btn @click="showOverlay()" outlined fab :color="component.color" :disabled="requestStatus" class="align-self-center">
             <v-icon>{{component.icon}}</v-icon>
         </v-btn>
     </div>

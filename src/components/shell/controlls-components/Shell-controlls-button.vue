@@ -25,13 +25,14 @@ export default {
         }),
         clickHandler(){
             if(this.component.validation){
-                return this.$emit('validate', [this.component.ref, this.component.route, this.component.sendModels,this.component.method])
+                return this.$emit('validate', [this.component.ref, this.component.route, this.component.request, this.component.sendModels,this.component.method])
             }
             this.runShellCmd( this.buildRunShellParams())
         },
         buildRunShellParams(){
             let payload = {
                 route:this.component.route,
+                request: this.component.request,
                 slug:this.$route.params.slug,
                 method:this.component.method ? this.component.method : false
             }

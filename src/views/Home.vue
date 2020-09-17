@@ -31,7 +31,7 @@ export default {
                {
           id:4,
           avatar: require("@/assets/profile.png"),
-          username: 'John ed',
+          username: 'Placeholder for featured user\'s projects',
           projectImg: require("@/assets/placeholder4.png"),
           projectName: 'Basic Chat',
           projectDescription: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id culpa optio animi soluta, saepe numquam ut dolore eveniet deserunt minima consectetur, ad repellat. Repudiandae omnis, corporis rem accusantium saepe at",
@@ -41,7 +41,7 @@ export default {
         {
           id:5,
           avatar: require("@/assets/profile.png"),
-          username: 'John ed',
+          username: 'Placeholder for featured user\'s projects',
           projectImg: require("@/assets/placeholder5.png"),
           projectName: 'Darbo baze',
           projectDescription: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id culpa optio animi soluta, saepe numquam ut dolore eveniet deserunt minima consectetur, ad repellat. Repudiandae omnis, corporis rem accusantium saepe at",
@@ -50,7 +50,7 @@ export default {
         },{
           id:1,
           avatar: require("@/assets/profile.png"),
-          username: 'John ',
+          username: 'Placeholder for featured user\'s projects',
           projectImg: require("@/assets/placeholder1.png"),
           projectName: 'Reddit',
           projectDescription: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id culpa optio animi soluta, saepe numquam ut dolore eveniet deserunt minima consectetur, ad repellat. Repudiandae omnis, corporis rem accusantium saepe at",
@@ -60,7 +60,7 @@ export default {
         {
           id:2,
           avatar: require("@/assets/profile.png"),
-          username: 'John',
+          username: 'Placeholder for featured user\'s projects',
           projectImg: require("@/assets/placeholder2.png"),
           projectName: 'Youtube',
           projectDescription: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id culpa optio animi soluta, saepe numquam ut dolore eveniet deserunt minima consectetur, ad repellat. Repudiandae omnis, corporis rem accusantium saepe at",
@@ -70,7 +70,7 @@ export default {
         {
           id:3,
           avatar: require("@/assets/profile.png"),
-          username: 'John',
+          username: 'Placeholder for featured user\'s projects',
           projectImg: require("@/assets/placeholder3.png"),
           projectName: 'World map',
           projectDescription: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id culpa optio animi soluta, saepe numquam ut dolore eveniet deserunt minima consectetur, ad repellat. Repudiandae omnis, corporis rem accusantium saepe at",

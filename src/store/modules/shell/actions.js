@@ -5,7 +5,8 @@ import {
     MUTATE_DATABASE,
 
 } from './mutation-types'
-import api from '@/api/api.js'
+import api from '@/api/api.js';
+import router from '@/router/index.js'
 
 
 export default {
@@ -31,6 +32,7 @@ export default {
       (response)=>{
         dispatch('session/mutateReqStatus', false,{root:true});
         if(body.method){
+          console.log(body.method);
           dispatch(body.method,response)
         }
       },
@@ -62,7 +64,6 @@ export default {
               slug
           },
           (dbStatus)=>{
-              console.log(dbStatus)
               dispatch('mutateDatabase',dbStatus);
           },
           (err)=>{
@@ -83,6 +84,9 @@ export default {
         value: ''
       };
       dispatch('mutateModel',modelInfo)
+    },
+    redirectToPanel(context){
+      router.push('/panel');
     }
     
 }

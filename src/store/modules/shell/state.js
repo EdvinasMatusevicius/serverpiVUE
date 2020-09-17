@@ -24,7 +24,8 @@ export default ()=> ({
                     name:'composer install',
                     icon:'mdi-package-down',
                     color:'primary',
-                    route:'composer_install',
+                    request:'post',
+                    route:'shell/composer_install',
                 },
                 {
                     id:2,
@@ -32,7 +33,8 @@ export default ()=> ({
                     name:'npm install',
                     icon:'mdi-package-down',
                     color:'secondary',
-                    route:'npm_install',
+                    request:'post',
+                    route:'shell/npm_install',
                 }
             ]
             },
@@ -46,7 +48,8 @@ export default ()=> ({
                     name:'Create env file and copy values from env.example',
                     icon:'mdi-file-plus',
                     color:'#3f3f3fb6',
-                    route:'copy_env_example',
+                    request:'post',
+                    route:'shell/copy_env_example',
                 },
                 {
                     id:2,
@@ -54,7 +57,8 @@ export default ()=> ({
                     name:'Create empty env file',
                     icon:'mdi-file-plus-outline',
                     color:'#3f3f3fb6',
-                    route:'create_env_file',
+                    request:'post',
+                    route:'shell/create_env_file',
                 },
                 {
                     id:3,
@@ -62,7 +66,8 @@ export default ()=> ({
                     name:'Generate app key',
                     icon:'mdi-key-plus',
                     color:'primary',
-                    route:'app_key_generate',
+                    request:'post',
+                    route:'shell/app_key_generate',
                 },
                 {
                     id:4,
@@ -70,7 +75,8 @@ export default ()=> ({
                     name:'Link storage (filesystem driver must be set if not default)',
                     icon:'mdi-link-variant-plus',
                     color:'primary',
-                    route:'app_storage_link',
+                    request:'post',
+                    route:'shell/app_storage_link',
                 },
                 {
                     id:5,
@@ -78,7 +84,8 @@ export default ()=> ({
                     name:'Edit env file values',
                     icon:'mdi-file-download-outline',
                     color:'#3f3f3fb6',
-                    route:'get_env_values',
+                    request:'post',
+                    route:'shell/get_env_values',
                     method:'fillEnvVars',
                 },
                 {
@@ -95,7 +102,8 @@ export default ()=> ({
                     icon:'mdi-file-upload',
                     sendModels:['envVars'],
                     color:'#3f3f3fb6',
-                    route:'write_to_env_file',
+                    request:'post',
+                    route:'shell/write_to_env_file',
                     method:'clearEnvVars',
                 }
             ]
@@ -127,7 +135,8 @@ export default ()=> ({
                             sendModels:['registerDbUserPassword'],
                             ref:'dbcreate',
                             color:'brown lighten-1',
-                            route:'db_and_user_create',
+                            request:'post',
+                            route:'shell/db_and_user_create',
                             method:'getDbStatus',
                             showIf:'needDbAndUser'
                         },
@@ -137,7 +146,8 @@ export default ()=> ({
                             name:'Create project database',
                             icon:'mdi-database-plus',
                             color:'brown lighten-1',
-                            route:'db_create',
+                            request:'post',
+                            route:'shell/db_create',
                             method:'getApplicationDatabase',
                             showIf:'needDb'
                         },
@@ -154,7 +164,8 @@ export default ()=> ({
                     type:'button',
                     name:'Migrate database (database must be created and database credentials saved to env file)',
                     icon:'mdi-database-import',
-                    route:'db_migrate',
+                    request:'post',
+                    route:'shell/db_migrate',
                     color:'brown lighten-1'
                 }
             ]
@@ -168,7 +179,8 @@ export default ()=> ({
                     type:'button',
                     name:'Git pull',
                     icon:'mdi-git',
-                    route:'git_pull',
+                    request:'post',
+                    route:'shell/git_pull',
                     color:'deep-orange darken-2',
                 },
                 {
@@ -198,7 +210,8 @@ export default ()=> ({
                             sendModels:['path'],
                             ref:'nginx',
                             color:'#3f3f3fb6',
-                            route:'nginx_config',
+                            request:'post',
+                            route:'shell/nginx_config',
                         }
     
                     ]
@@ -233,7 +246,8 @@ export default ()=> ({
                             validation:true,
                             sendModels:['customQueryUserPassword','customquery'],
                             ref:'customquery',
-                            route:'db_custom_query',
+                            request:'post',
+                            route:'shell/db_custom_query',
                             color:'brown lighten-1',
                         }
     
@@ -260,7 +274,8 @@ export default ()=> ({
                             validation:true,
                             sendModels:['artisanCmd'],
                             ref:'customartisan',
-                            route:'custom_artisan',
+                            request:'post',
+                            route:'shell/custom_artisan',
                             color:'primary'
                         }
     
@@ -269,7 +284,7 @@ export default ()=> ({
             ]
             },
             {
-                id:4,
+                id:5,
                 groupName:'Application settings',
                 components:[
                     {
@@ -284,8 +299,10 @@ export default ()=> ({
                                 id:1,
                                 type:'button',
                                 name:'Delete',
+                                request:'delete',
                                 icon:'mdi-delete',
-                                route:'git_pull', //gali pasikeist nes nesukurtas route
+                                route:'delete_app',
+                                method:'redirectToPanel',
                                 color:'red darken-4',
                             },
                         ]
@@ -375,13 +392,40 @@ export default ()=> ({
                             sendModels:['path'],
                             ref:'nginx',
                             color:'#3f3f3fb6',
-                            route:'nginx_config',
+                            request:'post',
+                            route:'shell/nginx_config',
                         }
     
                     ]
                 }
             ]
             },
+            {
+                id:3,
+                groupName:'Application settings',
+                components:[
+                    {
+                        id:1,
+                        type:'overlay',
+                        name:'Delete application',
+                        icon:'mdi-delete',
+                        color:'red darken-4',
+                        message:'Are you sure you want to delete this app?',
+                        overlayComponents:[
+                            {
+                                id:1,
+                                type:'button',
+                                name:'Delete',
+                                request:'delete',
+                                icon:'mdi-delete',
+                                route:'delete_app',
+                                method:'redirectToPanel',
+                                color:'red darken-4',
+                            },
+                        ]
+                    }
+                ]
+            }
         ]
 }
 })
