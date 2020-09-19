@@ -323,7 +323,8 @@ export default ()=> ({
                     name:'Create empty env file',
                     icon:'mdi-file-plus-outline',
                     color:'#3f3f3fb6',
-                    route:'create_env_file',
+                    request:'post',
+                    route:'shell/create_env_file',
                 },
                 {
                     id:5,
@@ -331,7 +332,8 @@ export default ()=> ({
                     name:'Edit env file values',
                     icon:'mdi-file-download-outline',
                     color:'#3f3f3fb6',
-                    route:'get_env_values',
+                    request:'post',
+                    route:'shell/get_env_values',
                     method:'fillEnvVars',
                 },
                 {
@@ -348,7 +350,8 @@ export default ()=> ({
                     icon:'mdi-file-upload',
                     sendModels:['envVars'],
                     color:'#3f3f3fb6',
-                    route:'write_to_env_file',
+                    request:'post',
+                    route:'shell/write_to_env_file',
                     method:'clearEnvVars',
                 }
                 ]
@@ -362,7 +365,8 @@ export default ()=> ({
                     type:'button',
                     name:'Git pull',
                     icon:'mdi-git',
-                    route:'git_pull',
+                    request:'post',
+                    route:'shell/git_pull',
                     color:'deep-orange darken-2',
                 },
                 {

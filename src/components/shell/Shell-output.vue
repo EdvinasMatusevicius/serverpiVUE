@@ -3,7 +3,7 @@
             <div class="shell__output-name">Shell output</div>
             <p class="shell__output ma-0">{{shell.output}}</p>
             <div class="shell__error-name">Shell error output</div>
-            <p class="shell__error ma-0">{{shell.errors}}</p>
+            <p class="shell__error ma-0">{{checkForNginxInitiationRestartError(shell.errors)}}</p>
         </div>
 </template>
 
@@ -42,6 +42,10 @@ export default {
                     this.getShellLoop()
                 }
             }, 700);
+        },
+        checkForNginxInitiationRestartError(error){
+            const present = error.search(/ln: failed to create symbolic link '\/etc\/nginx\/sites-enabled\//g);
+            return present === -1 ? error : ''
         }
     }
 
