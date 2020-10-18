@@ -3,8 +3,8 @@ export default ()=> ({
         output:'',
         errors:'',
     },
-    database:false
-    ,
+    database:false,
+    share:false,
     models:{
         envVars:'',
         registerDbUserPassword:'',
