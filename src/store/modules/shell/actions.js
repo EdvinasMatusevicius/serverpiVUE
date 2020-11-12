@@ -3,7 +3,7 @@ import {
     MUTATE_SHELL_OUTPUT,
     MUTATE_SHELL_ERRORS,
     MUTATE_DATABASE,
-
+    MUTATE_SHARE,
 } from './mutation-types'
 import api from '@/api/api.js';
 import router from '@/router/index.js'
@@ -22,6 +22,9 @@ export default {
     },
     mutateDatabase({commit},dbStatus){
       commit(MUTATE_DATABASE,dbStatus);
+    },
+    mutateShare({commit},status){
+      commit(MUTATE_SHARE,status)
     },
     async runShellCmd({dispatch},body){
       dispatch('session/mutateReqStatus', true,{root:true});
@@ -70,6 +73,17 @@ export default {
               console.log(err)
           }
       )
+    },
+    async getApplicationShareStatus({dispatch},slug){
+      await api.getApplicationShareStatus(slug,
+        (shareStatus)=>{
+          console.log(shareStatus)
+          dispatch('mutateShare',shareStatus)
+        },
+        (error)=>{
+          console.log(error)
+        }
+        )
     },
     fillEnvVars({dispatch},response){
       const modelInfo = {

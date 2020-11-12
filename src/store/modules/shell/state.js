@@ -289,6 +289,14 @@ export default ()=> ({
                 components:[
                     {
                         id:1,
+                        type:'switch',
+                        name:'#',
+                        defaultVal: '#'
+                        
+                    },
+
+                    {
+                        id:3,
                         type:'overlay',
                         name:'Delete application',
                         icon:'mdi-delete',
@@ -410,6 +418,13 @@ export default ()=> ({
                 components:[
                     {
                         id:1,
+                        type:'switch',
+                        name:'#',
+                        defaultVal: 'getShare'
+                        
+                    },
+                    {
+                        id:3,
                         type:'overlay',
                         name:'Delete application',
                         icon:'mdi-delete',

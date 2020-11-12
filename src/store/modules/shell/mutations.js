@@ -2,7 +2,8 @@ import {
     MUTATE_MODEL,
     MUTATE_SHELL_OUTPUT,
     MUTATE_SHELL_ERRORS,
-    MUTATE_DATABASE
+    MUTATE_DATABASE,
+    MUTATE_SHARE
 } from './mutation-types'
 
 export default {
@@ -17,5 +18,8 @@ export default {
     },
     [MUTATE_DATABASE](state,dbStatus){
         state.database = dbStatus
+    },
+    [MUTATE_SHARE](state,share){
+        state.share = share
     },
   }

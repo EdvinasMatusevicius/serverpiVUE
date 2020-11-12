@@ -3,7 +3,8 @@ import store from '../store'
 import router from '../router/index'
 
 
-const API_URL = 'http://api.serverpi.ddns.me/api/';
+const API_URL = 'http://localhost:8000/api/';
+// const API_URL = 'http://api.serverpi.ddns.me/api/';
 
 export default {
   //--------------------------------------------------------------USER AUTH AND SESSION
@@ -132,6 +133,19 @@ export default {
       failure(errorsMessages);
     }
   },
+  getApplicationShareStatus: async (slug,success,failure)=>{
+    try {
+      const response = await api().get(API_URL + `${slug}/share-status`);
+      success(!!response.data.data.share);
+    } catch (context) {
+      // let errorsMessages = [];
+      // const { errors } = context.response.data;
+      // for (const errorName in errors) {
+      //   errorsMessages = [...errorsMessages, ...errors[errorName]];
+      // }
+      failure(context);
+    }
+  }
 }
 //--------------------------------------------------------------------------------------------AXIOS HEADER CONFIGURATION
 function api() {

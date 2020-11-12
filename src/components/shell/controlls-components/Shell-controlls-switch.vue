@@ -1,16 +1,22 @@
 <template>
   <v-switch
-  :model="share"
+    v-model="share"
+    inset
+    :label="'when deployed show app on main page'"
   ></v-switch>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 export default {
     name:'shell-component-switch',
     props:['component'],
     created(){
-
+        if(typeof this.component.defaultVal === "boolean"){
+            // import mutation action for share and set share val to component.defaultval
+        }else{
+            this.getShare(this.$route.params.slug);
+        }
     },
     computed:{
         ...mapGetters({
@@ -18,7 +24,9 @@ export default {
         })
     },
     methods:{
-        //create action to get app share status ant call on created and 
+        ...mapActions({
+            getShare:"shell/getApplicationShareStatus"
+        })
     }
 }
 </script>

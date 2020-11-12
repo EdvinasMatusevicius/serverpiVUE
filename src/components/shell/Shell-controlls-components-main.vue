@@ -21,6 +21,11 @@
             :component="component"
        >
        </overlay>
+       <switch-button
+           v-if="component.type === 'switch'"
+           :component="component"
+       >
+       </switch-button>
     </div>
 </template>
 
@@ -30,7 +35,8 @@ import infoArea from '@/components/shell/controlls-components/Shell-controlls-in
 import textField from '@/components/shell/controlls-components/Shell-controlls-textfield.vue';
 import controllsButton from '@/components/shell/controlls-components/Shell-controlls-button.vue';
 import controllsForm from '@/components/shell/controlls-components/Shell-controlls-form.vue';
-import overlay from '@/components/shell/controlls-components/Shell-controlls-overlay.vue'
+import overlay from '@/components/shell/controlls-components/Shell-controlls-overlay.vue';
+import switchButton from '@/components/shell/controlls-components/Shell-controlls-switch.vue';
 export default {
     name:'shell-controll-components',
     props:['component','model'],
@@ -40,7 +46,8 @@ export default {
         textField,
         controllsButton,
         controllsForm,
-        overlay
+        overlay,
+        switchButton,
     },
 
     
