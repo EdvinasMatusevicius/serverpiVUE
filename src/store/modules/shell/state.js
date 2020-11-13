@@ -290,8 +290,7 @@ export default ()=> ({
                     {
                         id:1,
                         type:'switch',
-                        name:'#',
-                        defaultVal: '#'
+                        name:'when deployed show app on main page',
                         
                     },
 
@@ -419,8 +418,7 @@ export default ()=> ({
                     {
                         id:1,
                         type:'switch',
-                        name:'#',
-                        defaultVal: 'getShare'
+                        name:'when deployed show app on main page',
                         
                     },
                     {

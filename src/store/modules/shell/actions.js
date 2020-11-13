@@ -77,7 +77,6 @@ export default {
     async getApplicationShareStatus({dispatch},slug){
       await api.getApplicationShareStatus(slug,
         (shareStatus)=>{
-          console.log(shareStatus)
           dispatch('mutateShare',shareStatus)
         },
         (error)=>{

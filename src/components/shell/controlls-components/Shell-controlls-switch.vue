@@ -1,22 +1,38 @@
 <template>
   <v-switch
-    v-model="share"
+    v-model="shareLocal"
     inset
-    :label="'when deployed show app on main page'"
+    :label="component.name"
   ></v-switch>
 </template>
 
 <script>
+import api from '@/api/api.js'
 import { mapActions, mapGetters } from 'vuex'
 export default {
     name:'shell-component-switch',
     props:['component'],
-    created(){
-        if(typeof this.component.defaultVal === "boolean"){
-            // import mutation action for share and set share val to component.defaultval
-        }else{
-            this.getShare(this.$route.params.slug);
+    data(){
+        return{
+            shareLocal: false,
+            slug:this.$route.params.slug
         }
+    },
+
+    watch:{
+        shareLocal:function(newVal){
+            const reqBody = {
+                share: newVal,
+                slug: this.slug
+                };
+            this.saveShareStatus(reqBody);
+        },
+        share:function(newVal){
+            this.shareLocal = newVal
+        }
+    },
+    created(){
+            this.getShare(this.slug);
     },
     computed:{
         ...mapGetters({
@@ -25,8 +41,15 @@ export default {
     },
     methods:{
         ...mapActions({
-            getShare:"shell/getApplicationShareStatus"
-        })
+            getShare:"shell/getApplicationShareStatus",
+            mutateShare: "shell/mutateShare"
+        }),
+        async saveShareStatus(body){
+            api.saveShareStatus(
+                body,
+                (res)=>{},
+                (err)=>{console.log(err)})
+        }
     }
 }
 </script>
