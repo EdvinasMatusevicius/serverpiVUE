@@ -14,7 +14,7 @@ export default {
     props:['component'],
     data(){
         return{
-            shareLocal: false,
+            shareLocal: this.$store.getters['shell/getShare'],
             slug:this.$route.params.slug
         }
     },
@@ -31,9 +31,6 @@ export default {
             this.shareLocal = newVal
         }
     },
-    created(){
-            this.getShare(this.slug);
-    },
     computed:{
         ...mapGetters({
             share:"shell/getShare"
@@ -41,13 +38,12 @@ export default {
     },
     methods:{
         ...mapActions({
-            getShare:"shell/getApplicationShareStatus",
             mutateShare: "shell/mutateShare"
         }),
         async saveShareStatus(body){
             api.saveShareStatus(
                 body,
-                (res)=>{},
+                (res)=>{console.log(res)},
                 (err)=>{console.log(err)})
         }
     }

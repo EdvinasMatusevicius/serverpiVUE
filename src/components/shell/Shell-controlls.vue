@@ -30,10 +30,12 @@ export default {
     data(){
         return{
             language:this.appLanguage(),
+            slug:this.$route.params.slug
         }
     },
     created(){
-        this.getApplicationDb({slug:this.$route.params.slug})
+        this.getApplicationDb({slug:this.slug}),
+        this.getShare(this.slug)
     },
     computed:{
         ...mapGetters({
@@ -44,6 +46,7 @@ export default {
     methods:{
         ...mapActions({
             getApplicationDb:"shell/getApplicationDatabase",
+            getShare:"shell/getApplicationShareStatus",
         }),
         appLanguage(){
             return this.$route.params.language === '1' ? 'php' : 'static'

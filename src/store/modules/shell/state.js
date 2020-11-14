@@ -293,7 +293,10 @@ export default ()=> ({
                         name:'when deployed show app on main page',
                         
                     },
-
+                    {
+                        id:2,
+                        type:'img-upload'
+                    },
                     {
                         id:3,
                         type:'overlay',
@@ -420,6 +423,10 @@ export default ()=> ({
                         type:'switch',
                         name:'when deployed show app on main page',
                         
+                    },
+                    {
+                        id:2,
+                        type:'img-upload'
                     },
                     {
                         id:3,

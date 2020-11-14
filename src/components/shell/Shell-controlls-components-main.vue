@@ -16,16 +16,21 @@
             v-if="component.type === 'form'"
             :component="component"
         ></controlls-form>
+
        <overlay
             v-if="component.type === 'overlay'"
             :component="component"
-       >
-       </overlay>
+       ></overlay>
+
        <switch-button
            v-if="component.type === 'switch'"
            :component="component"
-       >
-       </switch-button>
+       ></switch-button>
+
+       <img-upload
+           v-if="component.type === 'img-upload'"
+           :component="component"
+       ></img-upload>
     </div>
 </template>
 
@@ -37,6 +42,7 @@ import controllsButton from '@/components/shell/controlls-components/Shell-contr
 import controllsForm from '@/components/shell/controlls-components/Shell-controlls-form.vue';
 import overlay from '@/components/shell/controlls-components/Shell-controlls-overlay.vue';
 import switchButton from '@/components/shell/controlls-components/Shell-controlls-switch.vue';
+import imgUpload from '@/components/shell/controlls-components/Shell-controlls-img-upload.vue';
 export default {
     name:'shell-controll-components',
     props:['component','model'],
@@ -48,6 +54,7 @@ export default {
         controllsForm,
         overlay,
         switchButton,
+        imgUpload
     },
 
     
