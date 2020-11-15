@@ -90,6 +90,15 @@ export default {
       failure(error);
     }
   },
+  saveApplicationImage: async(body,success,failure)=>{
+    try {
+      const response = await api().post(API_URL + body.slug+'/image',body.image);
+      success(response.data.data);
+    } catch (context) {
+      let errorsMessage = JSON.parse(context.response.request.response);
+      failure(errorsMessage.errors.image[0]);
+    }
+  },
   //---------------------------------------------------------------------------SHELL OUTPUT GETTER
   getShell: async(success,failure)=>{
     try {

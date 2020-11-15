@@ -295,7 +295,9 @@ export default ()=> ({
                     },
                     {
                         id:2,
-                        type:'img-upload'
+                        type:'img-upload',
+                        name:'Application image (Image size up to 0.5mb)',
+                        icon:'mdi-image-plus'
                     },
                     {
                         id:3,
@@ -426,7 +428,9 @@ export default ()=> ({
                     },
                     {
                         id:2,
-                        type:'img-upload'
+                        type:'img-upload',
+                        name:'Application image (Image size up to 0.5mb)',
+                        icon:'mdi-image-plus'
                     },
                     {
                         id:3,
