@@ -136,6 +136,14 @@ export default {
       failure(errorsMessages);
     }
   },
+  getSharedProjects: async(success,failure)=>{
+    try {
+      const response = await api().get(API_URL + 'shared-apps');
+      success(response.data.data.appsWithUsersList);
+    } catch (error) {
+      failure(error);
+    }
+  },
   getApplicationDatabase: async (body, success, failure) => {
     try {
       const response = await api().get(API_URL + body.slug + '/database');

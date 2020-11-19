@@ -5,7 +5,7 @@
         <v-card-title class="font-weight-normal body-2">
           <div class="card__user-grid  align-center">
               <v-avatar size="45" class="mr-3">
-                  <v-img :src="avatar"/>
+                  <!-- <v-img :src="avatar"/> -->
               </v-avatar>
               <!-- <v-btn fab depressed color="#dddddd" small class="mr-3">
                 <v-icon >mdi-account</v-icon>
