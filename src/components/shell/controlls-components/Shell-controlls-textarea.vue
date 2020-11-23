@@ -4,6 +4,7 @@
                 outlined
                 auto-grow
                 v-model="areaData"
+                :label="label"
             ></v-textarea>
         </div>
 </template>
@@ -12,21 +13,31 @@
 import { mapActions, mapGetters } from 'vuex';
 export default {
     name:"shell-component-textarea",
-    props:['model','type'],   //model 
+    props:['model','type','label'],   //model 
     data(){
         return{
             areaData:'',
-            watchedModel:'models.'+this.model
+            watchedModel: ''
         }
+    },
+    created(){
+        this.areaData = this.models[this.model],
+        this.watchedOldModel = Object.assign({}, { [this.model]: this.models[this.model]})
     },
     computed:{
         ...mapGetters({
             models:"shell/getModels"
         })
     },
-    watch:{//to do nested dynamic watcher
-        'models.envVars': function(newVal,oldval){
-            this.areaData = this.models[this.model];
+    watch:{
+        models:{
+            handler: function (val) {
+                if(val[this.model] !== this.watchedOldModel[this.model]){
+                    this.areaData = val[this.model],
+                    this.watchedOldModel = Object.assign({}, { [this.model]: val[this.model]})
+                }
+            },
+            deep:true
         },
         areaData:function(newVal){
            const mutateModelPayload ={

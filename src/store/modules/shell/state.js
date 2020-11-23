@@ -7,6 +7,7 @@ export default ()=> ({
     share:false,
     models:{
         envVars:'',
+        description:'',
         registerDbUserPassword:'',
         path:'',
         customQueryUserPassword:'',
@@ -81,7 +82,7 @@ export default ()=> ({
                 {
                     id:5,
                     type:'button',
-                    name:'Edit env file values',
+                    name:'Get env file values',
                     icon:'mdi-file-download-outline',
                     color:'#3f3f3fb6',
                     request:'post',
@@ -91,7 +92,7 @@ export default ()=> ({
                 {
                     id:6,
                     type:'textarea',
-                    name:'Get env file values',
+                    label:'',
                     icon:'mdi-file-download-outline',
                     model:'envVars',
                 },
@@ -301,6 +302,24 @@ export default ()=> ({
                     },
                     {
                         id:3,
+                        type:'textarea',
+                        label:'Application description. Max 300 symbols',
+                        icon:'mdi-file-download-outline',
+                        model:'description',
+                    },
+                     {
+                        id:4,
+                        type:'button',
+                        name:'Save description',
+                        icon:'mdi-file-upload',
+                        sendModels:['description'],
+                        color:'#3f3f3fb6',
+                        request:'post',
+                        route:'description',
+                        method:'',
+                    },
+                    {
+                        id:5,
                         type:'overlay',
                         name:'Delete application',
                         icon:'mdi-delete',
@@ -341,7 +360,7 @@ export default ()=> ({
                 {
                     id:5,
                     type:'button',
-                    name:'Edit env file values',
+                    name:'Get env file values',
                     icon:'mdi-file-download-outline',
                     color:'#3f3f3fb6',
                     request:'post',
@@ -351,7 +370,7 @@ export default ()=> ({
                 {
                     id:6,
                     type:'textarea',
-                    name:'Get env file values',
+                    label:'',
                     icon:'mdi-file-download-outline',
                     model:'envVars',
                 },
@@ -434,6 +453,24 @@ export default ()=> ({
                     },
                     {
                         id:3,
+                        type:'textarea',
+                        label:'Application description. Max 300 symbols',
+                        icon:'mdi-file-download-outline',
+                        model:'description',
+                    },
+                     {
+                        id:4,
+                        type:'button',
+                        name:'Save description',
+                        icon:'mdi-file-upload',
+                        sendModels:['description'],
+                        color:'#3f3f3fb6',
+                        request:'post',
+                        route:'description',
+                        method:'',
+                    },
+                    {
+                        id:5,
                         type:'overlay',
                         name:'Delete application',
                         icon:'mdi-delete',

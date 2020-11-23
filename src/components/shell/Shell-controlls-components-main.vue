@@ -10,6 +10,7 @@
             v-if="component.type === 'textarea'"
             :type="component.type"
             :model="component.model"
+            :label="component.label"
         ></text-area>
         <!-- form -->
         <controlls-form

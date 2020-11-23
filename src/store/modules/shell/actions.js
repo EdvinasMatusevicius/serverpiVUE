@@ -10,6 +10,8 @@ import router from '@/router/index.js'
 
 
 export default {
+
+  //----------------------------------MUTATORS
     mutateModel({commit},modelInfo){
       
       commit(MUTATE_MODEL,modelInfo);
@@ -26,26 +28,27 @@ export default {
     mutateShare({commit},status){
       commit(MUTATE_SHARE,status)
     },
+//------------------------------------------UNIVERSAL SHELL BUTTON FUNC
     async runShellCmd({dispatch},body){
-      dispatch('session/mutateReqStatus', true,{root:true});
-
+      // dispatch('session/mutateReqStatus', true,{root:true});
+      
       await api.runShellCmd({
         ...body
       },
       (response)=>{
         dispatch('session/mutateReqStatus', false,{root:true});
         if(body.method){
-          console.log(body.method);
           dispatch(body.method,response)
         }
       },
       (err)=>{
         dispatch('session/mutateReqStatus', false,{root:true});
-
+        
         console.log(err)
       }
       )
     },
+    //--------------------------------------------------------------------DB GETTERS
     async getShell({dispatch}){
       await api.getShell(
         (shell) => {
@@ -84,6 +87,18 @@ export default {
         }
         )
     },
+    async getApplicationDescription({dispatch},slug){
+      await api.getApplicationDescription(slug,
+        (description)=>{
+          dispatch('fillDescription',description);
+        },
+        (error)=>{
+          console.log(error)
+        }
+      )
+    },
+
+    //-------------------------------------MUTATOR FUNCTION HELPERS
     fillEnvVars({dispatch},response){
       const modelInfo = {
         model:'envVars',
@@ -98,6 +113,15 @@ export default {
       };
       dispatch('mutateModel',modelInfo)
     },
+    fillDescription({dispatch},response){
+      const modelInfo = {
+        model:'description',
+        value: response // can change in time
+      };
+      dispatch('mutateModel',modelInfo)
+    },
+
+    //----------------------------------
     redirectToPanel(context){
       router.push('/panel');
     }

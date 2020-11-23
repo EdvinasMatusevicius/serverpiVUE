@@ -162,14 +162,17 @@ export default {
       const response = await api().get(API_URL + `${slug}/share-status`);
       success(!!response.data.data.share);
     } catch (context) {
-      // let errorsMessages = [];
-      // const { errors } = context.response.data;
-      // for (const errorName in errors) {
-      //   errorsMessages = [...errorsMessages, ...errors[errorName]];
-      // }
       failure(context);
     }
-  }
+  },
+  getApplicationDescription: async (slug,success,failure)=>{
+    try {
+      const response = await api().get(API_URL + `${slug}/description`);
+      success(response.data.data);
+    } catch (context) {
+      failure(context);
+    }
+  },
 }
 //--------------------------------------------------------------------------------------------AXIOS HEADER CONFIGURATION
 function api() {
