@@ -50,6 +50,14 @@ export default {
       failure(errorsMessages);
     }
   },
+  saveLogo: async (body, success, failure)=>{
+    try {
+      const response = await api().post(API_URL + 'user/logo', body);
+      success(response.data.data)
+    } catch (error) {
+      failure(error)
+    }
+  },
   deleteAcc: async () => {
     try {
       await api().delete(API_URL + 'user/delete');

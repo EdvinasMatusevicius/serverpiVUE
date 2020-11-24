@@ -1,17 +1,19 @@
 <template>
     <div>
-        <v-btn @click="deleteAccount()">Delete account</v-btn>
+        <account-logo-upload></account-logo-upload>
+        <account-button></account-button>
     </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions } from 'vuex';
+import accountButton from "@/components/account/account-button.vue";
+import accountLogoUpload from "@/components/account/account-logo-upload.vue";
 export default {
     name:'account_settings',
-    methods:{
-        ...mapActions({
-            deleteAccount:'account/delete'
-        })
+    components:{
+        accountButton,
+        accountLogoUpload
     }
 }
 </script>

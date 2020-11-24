@@ -14,7 +14,6 @@
 
 <script>
 import api from '@/api/api.js'
-import { mapActions, mapGetters } from 'vuex'
 export default {
     name:'shell-component-img-upload',
     props:['component'],
