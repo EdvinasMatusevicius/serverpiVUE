@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <v-btn @click="deleteAccount()"><v-icon>mdi-delete</v-icon> Delete account</v-btn>
+    <div class="m-5 bc-danger">
+        <v-btn depressed @click="deleteAccount()"><v-icon color="red">mdi-delete</v-icon> Delete account</v-btn>
     </div>
 </template>
 

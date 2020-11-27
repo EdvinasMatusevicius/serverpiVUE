@@ -4,16 +4,16 @@
   <v-card class="card ma-5" color="#f5f7fa">
         <v-card-title class="font-weight-normal body-2">
           <div class="card__user-grid  align-center">
-              <v-avatar size="45" class="mr-3">
-                  <!-- <v-img :src="avatar"/> -->
+              <v-avatar v-if="logo" size="45" class="mr-3">
+                  <v-img :src="logo"/>
               </v-avatar>
-              <!-- <v-btn fab depressed color="#dddddd" small class="mr-3">
+              <v-btn v-else fab depressed color="#dddddd" small class="mr-3">
                 <v-icon >mdi-account</v-icon>
-              </v-btn> -->
+              </v-btn>
               <p class="ma-0 text-subtitle-1"> {{username}}</p>
             </div>
           </v-card-title>
-        <v-img alt="Vue logo" :src="projectImg"/>
+        <v-img alt="Vue logo" :aspect-ratio="16/9" :src="projectImg"/>
         <v-card-subtitle class="pb-0" color="red">
           <h3 class="text-center text--primary">{{projectName}}</h3><hr>
           <p class="text--secondary">{{projectDescription}}</p>
@@ -36,7 +36,7 @@
 <script>
 export default {
     name:'home-project-card',
-    props:['avatar','username','projectImg','projectName','projectDescription','projectLink','gihub']
+    props:['logo','username','projectImg','projectName','projectDescription','projectLink','gihub']
 }
 </script>
 

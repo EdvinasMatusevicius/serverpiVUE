@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="m-5">
     <v-file-input
       accept="image/*"
       :placeholder="'Set account logo'"

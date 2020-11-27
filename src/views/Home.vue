@@ -3,9 +3,9 @@
   <v-layout row wrap>
       <project-card
       v-for="(project,i) in projects" v-bind:key="i"
-      :avatar="project.image"
+      :logo="project.logo ? `http://localhost:8000/${project.logo}` : false"
       :username="project.name"
-      :projectImg="project.image ? 'http://localhost:8000/'+project.image : require('@/assets/placeholder4.png')"
+      :projectImg="project.image ? `http://localhost:8000/${project.image}` : require('@/assets/placeholder.jpg')"
       :projectName="project.applicationName"
       :projectDescription="project.description"
       :projectLink="'http://'+project.slug +'.serverpi.ddns.me'"
